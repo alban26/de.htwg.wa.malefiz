@@ -1,0 +1,54 @@
+@()
+
+@main("Malefiz") {
+    <center>
+        <div id="header">
+            <!-- <h2>Willkommen zu Malefiz!</h2> -->
+            <img src="@{routes.Assets.versioned("images/malefiz-banner.png")}">
+        </div>
+
+        <div id="newGame">
+            <h2>Spieler eintragen!</h2>
+            <table border="0">
+                <tr>
+                    <td background="@{routes.Assets.versioned("images/malefiz-player.png")}" height="313" width="137"></td>
+                    <td width="600" bgcolor=#F0E68C>
+
+                        <center>
+                            <form method="post" action="newGame">
+                            <table cellpadding="10">
+                                    <tr>
+                                        <td>Spieler 1</td>
+                                        <td><input type="text" name="player_1" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spieler 2</td>
+                                        <td><input type="text" name="player_2" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spieler 3</td>
+                                        <td><input type="text" name="player_3" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spieler 4</td>
+                                        <td><input type="text" name="player_4" /></td>
+                                    </tr>
+                            </table>
+                                <input type="submit" value="Spiel starten!">
+                                <br>
+                            </form>
+                        </center>
+
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </center>
+
+
+
+
+
+
+}

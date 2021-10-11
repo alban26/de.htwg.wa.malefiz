@@ -14,8 +14,9 @@ import de.htwg.se.malefiz.controller.controllerComponent.{ControllerInterface, S
  */
 @Singleton
 class MalefizController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
+
   val gameController: ControllerInterface = Malefiz.controller
-  val gameTUI: Tui = Malefiz.tui
+
   def malefizAsText: String =
     gameController.gameBoardToString +
     gameController.getPlayer.mkString("\n") + "\n" +
@@ -33,12 +34,29 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
   }
 
   def malefiz: Action[AnyContent] = Action {
-    Ok(malefizAsText)
+    Ok(views.html.malefiz())
   }
 
   def processCMD(cmd: String): Action[AnyContent] = Action {
-    gameTUI.processInput(cmd)
+    gameController.execute(cmd)
     Ok(malefizAsText)
+  }
+
+  def newGame: Action[AnyContent] = Action { request =>
+    val postVals = request.body.asFormUrlEncoded
+    postVals.map { args =>
+      val player_1 = args("player_1").head
+      val player_2 = args("player_2").head
+      val player_3 = args("player_3").head
+      val player_4 = args("player_4").head
+      val pList = List(player_1, player_2, player_3, player_4)
+      for(i <- pList.indices) {
+        if (pList(i) != "")
+          gameController.execute("n "+ pList(i))
+      }
+      Ok(s"Hier wird nun das Spiel gestartet mit $player_1, $player_2")
+    }.getOrElse(Ok("Oops"))
+
   }
 
 }
