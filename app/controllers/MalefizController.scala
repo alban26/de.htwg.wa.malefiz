@@ -37,7 +37,7 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
   }
 
   def processCMD(cmd: String): Action[AnyContent] = Action {
-    gameTUI.processInput(cmd)
+    gameController.execute(cmd)
     Ok(malefizAsText)
   }
 
