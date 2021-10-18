@@ -39,10 +39,14 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
 
   def processCMD(cmd: String): Action[AnyContent] = Action {
     gameController.execute(cmd)
-    Ok(malefizAsText)
+    Ok(views.html.gameboard(controller = gameController))
   }
 
-  def newGame: Action[AnyContent] = Action { request =>
+  def newGameGET: Action[AnyContent] = Action {
+    Ok(views.html.gameboard(controller = gameController))
+  }
+
+  def newGamePOST: Action[AnyContent] = Action { request =>
     val postVals = request.body.asFormUrlEncoded
     postVals.map { args =>
       val player_1 = args("player_1").head
@@ -50,13 +54,20 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
       val player_3 = args("player_3").head
       val player_4 = args("player_4").head
       val pList = List(player_1, player_2, player_3, player_4)
-      for(i <- pList.indices) {
-        if (pList(i) != "")
-          gameController.execute("n "+ pList(i))
-      }
-      Ok(s"Hier wird nun das Spiel gestartet mit $player_1, $player_2")
-    }.getOrElse(Ok("Oops"))
+
+      val players = pList.filter(p => p != "")
+
+      players.foreach(player => gameController.execute("n " + player))
+      gameController.execute("n start")
+
+      Ok(views.html.gameboard(controller = gameController))
+    }.getOrElse(Ok("Ups da ist etwas schiefgelaufen :/"))
 
   }
+
+  def gameRules = Action {
+    Ok(views.html.gamerules())
+  }
+
 
 }
