@@ -3,73 +3,70 @@
 @(controller: de.htwg.se.malefiz.controller.controllerComponent.ControllerInterface)
 
 @main("Malefiz Game") {
-
-    <div  align="center">
-        <div background id="header">
-            <font size="7" face="Comic sans MS" color="#E55A00" >MALEFIZ</font>
-        </div>
-
-        <table background="@{routes.Assets.versioned("images/malefiz-end.png")}" width="770" height="840">
+    <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/gameboard.css")' />
+    <div id="wrapper">
+        <h1>MALEFIZ</h1>
+        <table id="tableGame">
             <tr >
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"> </td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/aim.png")}" >
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="aim">
                 @if(controller.getCellList(131).playerNumber != 0 && !controller.getCellList(131).hasWall) {
                     @if(controller.getCellList(131).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(131).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(131).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(131).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(131).playerNumber @controller.getCellList(131).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(131).playerNumber @controller.getCellList(131).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(131).playerNumber}.png")}">
                         </form>
                     }
                 } else {
                     @if(controller.getCellList(131).hasWall) {
                         @if(controller.getCellList(131).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(131).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(131).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(131).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(131).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(131).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(39).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(39).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
-                <td width=44 height=43 ><img src="@{routes.Assets.versioned("images/cells/transparent.png")}"></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
 
             </tr>
             <tr>
             @for(n <- 114 to 130) {
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td class="field">
                 @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
                     @if(controller.getCellList(n).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}.png")}">
                         </form>
                     }
@@ -77,22 +74,22 @@
                 } else {
                     @if(controller.getCellList(n).hasWall) {
                         @if(controller.getCellList(n).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(n).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
@@ -102,14 +99,14 @@
             }
             </tr>
             <tr>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td class="field">
                 @if(controller.getCellList(112).playerNumber != 0 && !controller.getCellList(112).hasWall) {
                     @if(controller.getCellList(112).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(112).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(112).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(112).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(112).playerNumber @controller.getCellList(112).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(112).playerNumber @controller.getCellList(112).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(112).playerNumber}.png")}">
                         </form>
                     }
@@ -117,51 +114,51 @@
                 } else {
                     @if(controller.getCellList(112).hasWall) {
                         @if(controller.getCellList(112).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(112).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(112).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(112).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(112).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(112).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(112).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(112).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(112).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(112).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(113).playerNumber != 0 && !controller.getCellList(113).hasWall) {
                     @if(controller.getCellList(113).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(113).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(113).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(113).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(113).playerNumber @controller.getCellList(113).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(113).playerNumber @controller.getCellList(113).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(113).playerNumber}.png")}">
                         </form>
                     }
@@ -169,22 +166,22 @@
                 } else {
                     @if(controller.getCellList(113).hasWall) {
                         @if(controller.getCellList(113).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(113).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(113).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(113).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(113).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(113).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(113).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(113).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(113).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(113).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
@@ -194,14 +191,14 @@
             </tr>
             <tr>
             @for(n <- 95 to 111) {
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td class="field">
                 @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
                     @if(controller.getCellList(n).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}.png")}">
                         </form>
                     }
@@ -209,22 +206,22 @@
                 } else {
                     @if(controller.getCellList(n).hasWall) {
                         @if(controller.getCellList(n).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(n).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
@@ -234,22 +231,22 @@
             }
             </tr>
             <tr>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(94).playerNumber != 0 && !controller.getCellList(94).hasWall) {
                     @if(controller.getCellList(94).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(94).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(94).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(94).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(94).playerNumber @controller.getCellList(94).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(94).playerNumber @controller.getCellList(94).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(94).playerNumber}.png")}">
                         </form>
                     }
@@ -257,53 +254,53 @@
                 } else {
                     @if(controller.getCellList(94).hasWall) {
                         @if(controller.getCellList(94).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(94).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(94).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(94).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(94).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(94).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(94).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(94).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(94).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(94).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
             </tr>
             <tr>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
                 @for(n <- 89 to 93) {
-                    <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                    <td class="field">
                     @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
                         @if(controller.getCellList(n).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}.png")}">
                             </form>
                         }
@@ -311,22 +308,22 @@
                     } else {
                         @if(controller.getCellList(n).hasWall) {
                             @if(controller.getCellList(n).possibleCells) {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                                 </form>
                             } else {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                                 </form>
                             }
                         } else {
                             @if(controller.getCellList(n).possibleCells) {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                                 </form>
                             }
                             @if(controller.getGameState.state.toString == "5") {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                                 </form>
                             }
@@ -334,28 +331,28 @@
                     }
                     </td>
                 }
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
             </tr>
             <tr>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(87).playerNumber != 0 && !controller.getCellList(87).hasWall) {
                     @if(controller.getCellList(87).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(87).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(87).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(87).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(87).playerNumber @controller.getCellList(87).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(87).playerNumber @controller.getCellList(87).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(87).playerNumber}.png")}">
                         </form>
                     }
@@ -363,39 +360,39 @@
                 } else {
                     @if(controller.getCellList(87).hasWall) {
                         @if(controller.getCellList(87).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(87).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(87).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(87).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(87).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(87).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(87).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(87).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(87).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(87).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(88).playerNumber != 0 && !controller.getCellList(88).hasWall) {
                     @if(controller.getCellList(88).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(88).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(88).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(88).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(88).playerNumber @controller.getCellList(88).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(88).playerNumber @controller.getCellList(88).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(88).playerNumber}.png")}">
                         </form>
                     }
@@ -403,49 +400,49 @@
                 } else {
                     @if(controller.getCellList(88).hasWall) {
                         @if(controller.getCellList(88).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(88).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(88).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(88).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(88).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(88).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(88).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(88).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(88).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(88).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
             </tr>
             <tr>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
                 @for(n <- 78 to 86) {
-                    <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                    <td class="field">
                     @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
                         @if(controller.getCellList(n).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}.png")}">
                             </form>
                         }
@@ -453,22 +450,22 @@
                     } else {
                         @if(controller.getCellList(n).hasWall) {
                             @if(controller.getCellList(n).possibleCells) {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                                 </form>
                             } else {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                                 </form>
                             }
                         } else {
                             @if(controller.getCellList(n).possibleCells) {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                                 </form>
                             }
                             @if(controller.getGameState.state.toString == "5") {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                                 </form>
                             }
@@ -476,24 +473,24 @@
                     }
                     </td>
                 }
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
             </tr>
             <tr>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(76).playerNumber != 0 && !controller.getCellList(76).hasWall) {
                     @if(controller.getCellList(76).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(76).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(76).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(76).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(76).playerNumber @controller.getCellList(76).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(76).playerNumber @controller.getCellList(76).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(76).playerNumber}.png")}">
                         </form>
                     }
@@ -501,43 +498,43 @@
                 } else {
                     @if(controller.getCellList(76).hasWall) {
                         @if(controller.getCellList(76).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(76).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(76).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(76).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(76).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(76).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(76).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(76).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(76).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(76).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(77).playerNumber != 0 && !controller.getCellList(77).hasWall) {
                     @if(controller.getCellList(77).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(77).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(77).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(77).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(77).playerNumber @controller.getCellList(77).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(77).playerNumber @controller.getCellList(77).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(77).playerNumber}.png")}">
                         </form>
                     }
@@ -545,46 +542,46 @@
                 } else {
                     @if(controller.getCellList(77).hasWall) {
                         @if(controller.getCellList(77).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(77).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(77).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(77).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(77).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(77).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(77).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(77).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(77).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(77).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
             </tr>
             <tr>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
+                <td ></td>
+                <td ></td>
 
                 @for(n <- 63 to 75) {
-                    <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                    <td class="field">
                     @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
                         @if(controller.getCellList(n).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}.png")}">
                             </form>
                         }
@@ -592,22 +589,22 @@
                     } else {
                         @if(controller.getCellList(n).hasWall) {
                             @if(controller.getCellList(n).possibleCells) {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                                 </form>
                             } else {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                                 </form>
                             }
                         } else {
                             @if(controller.getCellList(n).possibleCells) {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                                 </form>
                             }
                             @if(controller.getGameState.state.toString == "5") {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                                 </form>
                             }
@@ -615,20 +612,20 @@
                     }
                     </td>
                 }
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
+                <td ></td>
+                <td ></td>
             </tr>
             <tr>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(59).playerNumber != 0 && !controller.getCellList(59).hasWall) {
                     @if(controller.getCellList(59).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(59).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(59).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(59).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(59).playerNumber @controller.getCellList(59).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(59).playerNumber @controller.getCellList(59).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(59).playerNumber}.png")}">
                         </form>
                     }
@@ -636,39 +633,39 @@
                 } else {
                     @if(controller.getCellList(59).hasWall) {
                         @if(controller.getCellList(59).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(59).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(59).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(59).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(59).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(59).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(59).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(59).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(59).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(59).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(60).playerNumber != 0 && !controller.getCellList(60).hasWall) {
                     @if(controller.getCellList(60).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(60).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(60).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(60).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(60).playerNumber @controller.getCellList(60).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(60).playerNumber @controller.getCellList(60).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(60).playerNumber}.png")}">
                         </form>
                     }
@@ -676,39 +673,39 @@
                 } else {
                     @if(controller.getCellList(60).hasWall) {
                         @if(controller.getCellList(60).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(60).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(60).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(60).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(60).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(60).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(60).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(60).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(60).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(60).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(61).playerNumber != 0 && !controller.getCellList(61).hasWall) {
                     @if(controller.getCellList(61).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(61).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(61).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(61).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(61).playerNumber @controller.getCellList(61).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(61).playerNumber @controller.getCellList(61).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(61).playerNumber}.png")}">
                         </form>
                     }
@@ -716,39 +713,39 @@
                 } else {
                     @if(controller.getCellList(61).hasWall) {
                         @if(controller.getCellList(61).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(61).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(61).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(61).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(61).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(61).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(61).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(61).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(61).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(61).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(62).playerNumber != 0 && !controller.getCellList(62).hasWall) {
                     @if(controller.getCellList(62).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(62).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(62).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(62).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(62).playerNumber @controller.getCellList(62).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(62).playerNumber @controller.getCellList(62).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(62).playerNumber}.png")}">
                         </form>
                     }
@@ -756,43 +753,43 @@
                 } else {
                     @if(controller.getCellList(62).hasWall) {
                         @if(controller.getCellList(62).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(62).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(62).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(62).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(62).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(62).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(62).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(62).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(62).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(62).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
+                <td ></td>
+                <td ></td>
             </tr>
 
             <!-- 6 -->
             <tr>
             @for(n <- 42 to 58) {
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td class="field">
                 @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
                     @if(controller.getCellList(n).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}.png")}">
                         </form>
                     }
@@ -800,22 +797,22 @@
                 } else {
                     @if(controller.getCellList(n).hasWall) {
                         @if(controller.getCellList(n).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(n).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                         @if(controller.getGameState.state.toString == "5") {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-wall.png")}">
                             </form>
                         }
@@ -826,168 +823,168 @@
             </tr>
             <!-- 5 -->
             <tr>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td class="field">
                 @if(controller.getCellList(37).playerNumber != 0 && !controller.getCellList(37).hasWall) {
                     @if(controller.getCellList(37).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(37).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(37).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(37).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(37).playerNumber @controller.getCellList(37).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(37).playerNumber @controller.getCellList(37).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(37).playerNumber}.png")}">
                         </form>
                     }
                 } else {
                     @if(controller.getCellList(37).hasWall) {
                         @if(controller.getCellList(37).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(37).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(37).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(37).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(37).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(37).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(37).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(37).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
+                <td ></td>
+                <td ></td>
+                <td ></td>
 
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td class="field">
                 @if(controller.getCellList(38).playerNumber != 0 && !controller.getCellList(38).hasWall) {
                     @if(controller.getCellList(38).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(38).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(38).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(38).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(38).playerNumber @controller.getCellList(38).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(38).playerNumber @controller.getCellList(38).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(38).playerNumber}.png")}">
                         </form>
                     }
                 } else {
                     @if(controller.getCellList(38).hasWall) {
                         @if(controller.getCellList(38).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(38).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(38).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(38).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(38).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(38).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(38).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(38).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(39).playerNumber != 0 && !controller.getCellList(39).hasWall) {
                     @if(controller.getCellList(39).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(39).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(39).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(39).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(39).playerNumber @controller.getCellList(39).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(39).playerNumber @controller.getCellList(39).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(39).playerNumber}.png")}">
                         </form>
                     }
                 } else {
                     @if(controller.getCellList(39).hasWall) {
                         @if(controller.getCellList(39).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(39).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(39).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(39).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(39).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(39).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(39).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(39).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(40).playerNumber != 0 && !controller.getCellList(40).hasWall) {
                     @if(controller.getCellList(40).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(40).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(40).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(40).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(40).playerNumber @controller.getCellList(40).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(40).playerNumber @controller.getCellList(40).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(40).playerNumber}.png")}">
                         </form>
                     }
                 } else {
                     @if(controller.getCellList(40).hasWall) {
                         @if(controller.getCellList(40).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(40).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(40).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(40).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(40).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(40).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(40).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(40).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
                     }
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}" >
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(41).playerNumber != 0 && !controller.getCellList(41).hasWall) {
                     @if(controller.getCellList(41).possibleCells) {
-                        <form method="post" action="/command/@controller.getCellList(41).cellNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(41).cellNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(41).playerNumber}-circle.png")}">
                         </form>
                     } else {
-                        <form method="post" action="/command/@controller.getCellList(41).playerNumber @controller.getCellList(41).figureNumber">
+                        <form class="input" method="post" action="/command/@controller.getCellList(41).playerNumber @controller.getCellList(41).figureNumber">
                             <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(41).playerNumber}.png")}">
                         </form>
                     }
                 } else {
                     @if(controller.getCellList(41).hasWall) {
                         @if(controller.getCellList(41).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(41).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(41).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(41).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(41).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(41).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(41).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(41).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                             </form>
                         }
@@ -998,31 +995,31 @@
             <!-- 4 -->
             <tr>
                 @for(n <- 20 to 36) {
-                    <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                    <td class="field">
                     @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
                         @if(controller.getCellList(n).possibleCells) {
-                            <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}-circle.png")}">
                             </form>
                         } else {
-                            <form method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
+                            <form class="input" method="post" action="/command/@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber">
                                 <input type="image" src="@{routes.Assets.versioned(f"images/figures/figure-${controller.getCellList(n).playerNumber}.png")}">
                             </form>
                         }
                     } else {
                         @if(controller.getCellList(n).hasWall) {
                             @if(controller.getCellList(n).possibleCells) {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall-circle.png")}">
                                 </form>
                             } else {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/wall.png")}">
                                 </form>
                             }
                         } else {
                             @if(controller.getCellList(n).possibleCells) {
-                                <form method="post" action="/command/@controller.getCellList(n).cellNumber">
+                                <form class="input" method="post" action="/command/@controller.getCellList(n).cellNumber">
                                     <input type="image" src="@{routes.Assets.versioned(f"images/cells/possible-cell.png")}">
                                 </form>
                             }
@@ -1033,210 +1030,204 @@
             </tr>
             <!-- 3 -->
             <tr>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(4).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(4).playerNumber @controller.getCellList(4).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(4).playerNumber @controller.getCellList(4).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-1.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(9).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(9).playerNumber @controller.getCellList(9).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(9).playerNumber @controller.getCellList(9).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-2.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(14).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(14).playerNumber @controller.getCellList(14).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(14).playerNumber @controller.getCellList(14).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-3.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td ></td>
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(19).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(19).playerNumber @controller.getCellList(19).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(19).playerNumber @controller.getCellList(19).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-4.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 ></td>
+                <td ></td>
+                <td ></td>
             </tr>
             <!-- 2 -->
             <tr>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(2).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(2).playerNumber @controller.getCellList(2).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(2).playerNumber @controller.getCellList(2).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-1.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(3).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(3).playerNumber @controller.getCellList(3).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(3).playerNumber @controller.getCellList(3).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-1.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(7).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(7).playerNumber @controller.getCellList(7).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(7).playerNumber @controller.getCellList(7).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-2.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(8).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(8).playerNumber @controller.getCellList(8).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(8).playerNumber @controller.getCellList(8).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-2.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(12).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(12).playerNumber @controller.getCellList(12).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(12).playerNumber @controller.getCellList(12).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-3.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(13).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(13).playerNumber @controller.getCellList(13).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(13).playerNumber @controller.getCellList(13).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-3.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(17).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(17).playerNumber @controller.getCellList(17).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(17).playerNumber @controller.getCellList(17).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-4.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(18).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(18).playerNumber @controller.getCellList(18).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(18).playerNumber @controller.getCellList(18).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-4.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
+                <td ></td>
             </tr>
             <!-- 1 -->
             <tr>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(0).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(0).playerNumber @controller.getCellList(0).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(0).playerNumber @controller.getCellList(0).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-1.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(1).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(1).playerNumber @controller.getCellList(1).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(1).playerNumber @controller.getCellList(1).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-1.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(5).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(5).playerNumber @controller.getCellList(5).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(5).playerNumber @controller.getCellList(5).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-2.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(6).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(6).playerNumber @controller.getCellList(6).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(6).playerNumber @controller.getCellList(6).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-2.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(10).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(10).playerNumber @controller.getCellList(10).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(10).playerNumber @controller.getCellList(10).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-3.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(11).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(11).playerNumber @controller.getCellList(11).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(11).playerNumber @controller.getCellList(11).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-3.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(15).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(15).playerNumber @controller.getCellList(15).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(15).playerNumber @controller.getCellList(15).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-4.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
-                <td width=44 height=43 background="@{routes.Assets.versioned("images/cells/field.png")}">
+                <td ></td>
+                <td class="field">
                 @if(controller.getCellList(16).playerNumber != 0) {
-                    <form method="post" action="/command/@controller.getCellList(16).playerNumber @controller.getCellList(16).figureNumber">
+                    <form class="input" method="post" action="/command/@controller.getCellList(16).playerNumber @controller.getCellList(16).figureNumber">
                         <input type="image" src="@{routes.Assets.versioned("images/figures/figure-4.png")}">
                     </form>
                 }
                 </td>
-                <td width=44 height=43 ></td>
+                <td ></td>
             </tr>
 
 
         </table>
         <br>
-        <table width="770">
+        <table id="tableGameInfo">
 
             <tr>
-                <td width="600"><p><font size="5" face="Comic sans MS" color="#E55A00">@Statements.value(StatementRequest(controller)) </font></p></td>
-                <td>        <form method="POST" action="/command/n">
+                <td class="cellStatement"><p class="statementText">@Statements.value(StatementRequest(controller))</p></td>
+                <td class="dice">
+                    <form class="input" method="POST" action="/command/n">
                     @println(controller.getGameState.state.toString)
                     @if(controller.getGameState.state.toString == "1") {
-
                         <input width="70" type="image" src="@{routes.Assets.versioned("images/dice.png")}">
                     } else {
-
                         <input width="70" type="image" src="@{routes.Assets.versioned("images/dice.png")}" disabled>
                         }
-                </form></td>
+                    </form>
+                </td>
             </tr>
         </table>
-
-
-
-
-
-
 
     </div>
 

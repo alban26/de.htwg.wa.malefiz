@@ -1,13 +1,62 @@
 @()
 
 @main("Malefiz") {
-    <center>
-        <div background id="header">
-            <img width="1000" src="@{routes.Assets.versioned("images/malefiz-banner.png")}">
+    <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/malefiz.css")' />
+    <body>
+
+        <header>
+                        <h1 class="">Malefiz</h1>
+
+
+        </header>
+
+        <div class="container">
+
+
+            <div class="left-box">
+                <div class="form1">
+                    <p class="gamerules"><a href="gameRules">SPIEL <br>REGELN</a></p>
+                </div>
+
+            </div>
+
+            <div class="right-box">
+                <div class="form">
+                    <h2>Bitte Spieler eintragen!</h2>
+                    <div class="input">
+                        <form method="post" action="newGame">
+                            <div class="inputBox">
+                                <label>Spieler 1</label>
+                                <input type="text" name="player_1" />
+                            </div>
+                            <div class="inputBox">
+                                <label>Spieler 2</label>
+                                <input type="text" name="player_2" />
+                            </div>
+                            <div class="inputBox">
+                                <label>Spieler 3</label>
+                                <input type="text" name="player_3" />
+                            </div>
+                            <div class="inputBox">
+                                <label>Spieler 4</label>
+                                <input type="text" name="player_4" />
+                            </div>
+                            <div class="inputBox">
+                                <input type="submit" value="Spiel starten!">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
 
-        <div id="newGame">
-            <table width="1000" height="400" border="0" bgcolor=#F0E68C >
+        <!--
+
+
+            <table border="1" bgcolor=#F0E68C >
                 <tr>
                     <td width="450" >
                         <center>
@@ -22,7 +71,7 @@
                         <center>
                             <h2><font size="5" face="Comic sans MS" color="#E55A00">Spieler eintragen!</font></h2>
                             <form method="post" action="newGame">
-                            <table cellpadding="10">
+                                <table cellpadding="10">
                                     <tr>
                                         <td><font size="5" face="Comic sans MS" color="#E55A00">Spieler 1</font></td>
                                         <td><input type="text" name="player_1" /></td>
@@ -39,7 +88,7 @@
                                         <td><font size="5" face="Comic sans MS" color="#E55A00">Spieler 4</font></td>
                                         <td><input type="text" name="player_4" /></td>
                                     </tr>
-                            </table>
+                                </table>
                                 <input type="submit" value="Spiel starten!">
                                 <br>
                             </form>
@@ -48,31 +97,10 @@
                     </td>
                 </tr>
             </table>
-
+            -->
         </div>
-        <div id="footer">
-
-            <table width="1000" height="200" background="@{routes.Assets.versioned("images/footer.png")}" >
-                <tr>
-                    <td height="100"></td>
-                </tr>
-                <tr>
-                    <td width="500">  </td>
-                    <td>
-                        <center>
-                            <p><font size="5" face="Comic sans MS" color="#E55A00">This is a HTML-Version of Malefiz</font></p>
-                        </center>
-                    </td>
-                </tr>
-
-            </table>
-
-        </div>
-    </center>
 
 
 
-
-
-
+        </body>
 }

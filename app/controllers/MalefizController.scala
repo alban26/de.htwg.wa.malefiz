@@ -69,5 +69,9 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
     Ok(views.html.gamerules())
   }
 
+  def test = Action {
+    Ok(views.html.test())
+  }
+
 
 }
