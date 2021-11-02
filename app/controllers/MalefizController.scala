@@ -70,7 +70,7 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
   }
 
   def test = Action {
-    Ok(views.html.test())
+    Ok(views.html.gameboard(controller = gameController))
   }
 
 
