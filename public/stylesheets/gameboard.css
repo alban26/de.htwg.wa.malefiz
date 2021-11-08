@@ -1,12 +1,16 @@
 * {
     margin: 0;
     padding: 0;
-
-
 }
 
 body {
     background-color: #3A3A3C;
+}
+
+canvas {
+    background: #E55A00;
+    width: 10px;
+    height: 10px;
 }
 
 .square {
@@ -53,10 +57,11 @@ body {
 }
 
 input {
-    max-width:100%;
-    max-height:100%;
+    max-width: 100%;
+    max-height: 100%;
     text-align: center;
 }
+
 .input {
     text-align: center;
 }
@@ -84,4 +89,231 @@ h1 {
     font-size: 3vw;
     font-family: "Comic Sans MS", serif;
     color: #E55A00;
+}
+
+.figure-1 {
+    background: red;
+    max-width: 80%;
+    max-height: 80%;
+    min-width: 80%;
+    min-height: 80%;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: inset 0 0 0.25em #000000;
+}
+
+.figure-2 {
+    background: forestgreen;
+    max-width: 80%;
+    max-height: 80%;
+    min-width: 80%;
+    min-height: 80%;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: inset 0 0 0.25em #000000;
+}
+
+.figure-3 {
+    background: yellow;
+    max-width: 80%;
+    max-height: 80%;
+    min-width: 80%;
+    min-height: 80%;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: inset 0 0 0.25em #000000;
+}
+
+.figure-4 {
+    background: blue;
+    max-width: 80%;
+    max-height: 80%;
+    min-width: 80%;
+    min-height: 80%;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: inset 0 0 0.25em #000000;
+}
+
+.possible-cell {
+    border: solid #00dde5;
+    max-width: 80%;
+    max-height: 80%;
+    min-width: 80%;
+    min-height: 80%;
+    border-radius: 50%;
+    text-align: center;
+
+}
+
+.possible-cell:hover {
+    background: #00dde5;
+}
+
+.wall {
+    background: white;
+    max-width: 80%;
+    max-height: 80%;
+    min-width: 80%;
+    min-height: 80%;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.possible-wall {
+    border: solid white;
+    max-width: 80%;
+    max-height: 80%;
+    min-width: 80%;
+    min-height: 80%;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.possible-wall:hover {
+    background: white;
+}
+
+
+.wall-circle {
+    background-color: white;
+    border: solid #00dde5;
+    max-width: 80%;
+    max-height: 80%;
+    min-width: 80%;
+    min-height: 80%;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.wall-circle:hover {
+    background-color: #00dde5;
+}
+
+.dice {
+    background: url("../images/dice.png") no-repeat;
+    max-width: 100%;
+    max-height: 100%;
+    /*min-width: 100%;*/
+    /*min-height: 100%;*/
+    width: 50px;
+    height: 52px;
+
+}
+
+
+.block {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.dice-count, .dice-count input {
+    font-size: 20px;
+}
+
+.box {
+    width: 500px;
+    text-align: center;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-contents: center;
+    margin: 5px;
+    max-width: 100%;
+    max-height: 100%;
+    /*min-width: 100%;*/
+    /*min-height: 100%;*/
+
+}
+
+#dice-box1 {
+    height: 200px;
+    max-width: 100%;
+    max-height: 100%;
+    /*min-width: 100%;*/
+    /*min-height: 100%;*/
+    width: 50px;
+}
+
+#dice-box2 {
+    height: 200px;
+}
+
+.roll {
+    height: 80px;
+    width: 200px;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+    font-size: 20px;
+    margin: 10px 0px;
+    max-width: 100%;
+    max-height: 100%;
+    /*min-width: 100%;*/
+    /*min-height: 100%;*/
+}
+
+
+
+/* CSS */
+.button-5 {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #fa6400;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+
+    max-width: 100%;
+    max-height: 100%;
+    /*min-width: 100%;*/
+    /*min-height: 100%;*/
+    height: 52px;
+}
+
+.button-5:hover,
+.button-5:focus {
+    background-color: #fb8332;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5:hover {
+    transform: translateY(-1px);
+}
+
+.button-5:active {
+    background-color: #c85000;
+    box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+    transform: translateY(0);
+}
+
+.modified-cell {
+    background: transparent;
+    max-width: 80%;
+    max-height: 80%;
+    min-width: 80%;
+    min-height: 80%;
+    border-radius: 50%;
+    text-align: center;
 }

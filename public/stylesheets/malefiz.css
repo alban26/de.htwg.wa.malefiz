@@ -1,44 +1,73 @@
-.form {
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+#form {
     padding: 5vh 2vw;
     width: 100%;
 }
+
 
 
 .card {
     box-shadow:
             -5px -5px 10px rgba(255, 255, 255, 0.05),
             5px 5px 15px rgba(0, 0, 0, 0.05);
+    background: #111111;
+}
+
+#card1.bright {
+    background-color: #ebf5fc;
+    box-shadow:
+            0 0 0 rgba(255, 255, 255, 2),
+            5px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 0.25rem;
+    border-color: #ebf5fc;
+}
+
+#card2.bright {
+    background-color: #ebf5fc;
+    box-shadow:
+            5px -5px 15px rgba(255, 255, 255, 2),
+            5px 5px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 0.25rem;
+    border-color: #ebf5fc;
 }
 
 
-.form h2 {
+#form h2 {
     color: #c7c7c7;
     font-size: large;
-
 }
 
-.card-title {
-    color: #c7c7c7;;
+#form.bright h2 {
+    color: #3A3A3C;
+    font-size: large;
 }
 
-.form .input {
+#form .input {
     text-align: left;
     margin-top: 1rem;
 
 }
 
-.form .input .inputBox {
+#form .input .inputBox {
     margin-top: 1rem;
 }
 
-.form .input .inputBox label{
+#form .input .inputBox label{
     display: block;
     color: #c7c7c7;
     margin-bottom: 0.5rem;
     font-size: 1rem;
 }
 
-.form .input .inputBox input{
+#form.bright .input .inputBox label{
+    display: block;
+    color: #3A3A3C;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+#form .input .inputBox input{
     width: 100%;
     background: #3A3A3C;
     border: none;
@@ -52,7 +81,21 @@
             inset 2px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
-.form .input .inputBox input[type="submit"]{
+#form.bright .input .inputBox input{
+    width: 100%;
+    background: #ebf5fc;
+    border: none;
+    outline: none;
+    border-radius: 2rem;
+    padding: 0.1rem 0.1rem;
+    color: #3A3A3C;
+    font-size: 1rem;
+    box-shadow:
+            inset 2px -2px 6px rgba(255, 255, 255, 0.1),
+            inset 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+#form .input .inputBox input[type="submit"]{
     color: #E55A00;
     margin-top: 10px;
     box-shadow:
@@ -60,7 +103,15 @@
             2px 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.form .input .inputBox input[type="submit"]:active {
+#form.bright .input .inputBox input[type="submit"]{
+    color: #3A3A3C;
+    margin-top: 10px;
+    box-shadow:
+            -2px -2px 6px rgba(255, 255, 255, 0.05),
+            2px 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+#form .input .inputBox input[type="submit"]:active {
     color: #E55A00;
     margin-top: 0.5rem;
     box-shadow:
@@ -68,8 +119,20 @@
             inset 2px 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-section {
+#form.bright .input .inputBox input[type="submit"]:active {
+    color: #3A3A3C;
+    margin-top: 0.5rem;
+    box-shadow:
+            inset -2px -2px 6px rgba(255, 255, 255, 0.05),
+            inset 2px 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+#section {
     background: #3A3A3C;
+}
+
+#section.bright {
+    background: #ebf5fc;
 }
 
 .container {
@@ -120,9 +183,127 @@ header h1 {
 }
 
 
-.gamerules {
+#gamerules {
     color: #E55A00;
     font-size: xx-large;
     text-decoration: none;
     text-align: center;
 }
+
+#gamerules.bright {
+    color: #3A3A3C;
+    font-size: xx-large;
+    text-decoration: none;
+    text-align: center;
+}
+
+/*.label {*/
+/*    background-color: #111;*/
+/*    display: flex;*/
+/*    border-radius: 50px;*/
+/*    height: 26px;*/
+/*    width: 50px;*/
+/*}*/
+
+.checkbox {
+    opacity: 0;
+    position: absolute;
+}
+
+/*.checkbox:checked + .label {*/
+/*    background-color: #E55A00;*/
+/*}*/
+
+.label {
+    background-color: #111;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    /*position: relative;*/
+    height: 26px;
+    width: 50px;
+    transform: scale(1.5);
+}
+
+.label .ball {
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    height: 22px;
+    width: 22px;
+    transform: translateX(0px);
+    transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label .ball {
+    transform: translateX(24px);
+}
+
+
+.checkbox-rules {
+    opacity: 0;
+    position: absolute;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.checkbox-rules:checked + .label {
+    background-color: #E55A00;
+}
+
+#rules-main {
+    visibility: visible; !important;
+}
+
+#rules-main.visually-hidden {
+    visibility: hidden; !important;
+}
+
+
+#rules-main.bright p,
+#rules-main.bright h1,
+#rules-main.bright h2,
+#rules-main.bright ul li {
+    color: #3A3A3C;
+}
+
+#rules-main p,
+#rules-main h1,
+#rules-main h2,
+#rules-main ul li {
+    color: #ebf5fc;
+}
+
+#rules-toggler.bright label{
+    color: #3A3A3C;
+}
+
+label {
+    color: #ebf5fc;
+}
+
+
+.arrow {
+    border: solid #E55A00;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
