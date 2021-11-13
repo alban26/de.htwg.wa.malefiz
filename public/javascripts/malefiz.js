@@ -11,7 +11,7 @@ function process(input) {
                 location.replace("/newGame")
             }, 2000)
         } else if (input === '131') {
-            win();
+            win(document.getElementById('winner').value);
             // window.location.replace("/");
         } else {
             window.location.replace("/newGame");
@@ -22,7 +22,7 @@ function process(input) {
 
 function validateForm(assignmentForm) {
 
-    var n = 0;
+    let n = 0;
 
     if (document.assignmentForm.player_1.value === "") {
         ++n;
@@ -50,14 +50,14 @@ function validateForm(assignmentForm) {
 }
 
 
-function win() {
+function win(winner) {
     Swal.fire({
-        title: 'Herzlichen Glückwunsch du hast gewonnen',
+        title: 'Herzlichen Glückwunsch '+ winner + 'du hast gewonnen',
         width: 1000,
         padding: '3em',
         backdrop: `
     rgba(0,0,123,0.4)
-    url('https://c.tenor.com/8zkQEAZZmhYAAAAC/squidward-spongebob-squarepants.gif')
+    url('https://i.ibb.co/tBQpBgD/trump.gif')
     left top
     repeat
   `
