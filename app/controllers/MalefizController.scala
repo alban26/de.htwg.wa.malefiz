@@ -1,12 +1,27 @@
 package controllers
 
+import akka.pattern.StatusReply.ErrorMessage
+
 import javax.inject._
 import play.api._
 import play.api.mvc._
 import de.htwg.se.malefiz.Malefiz
+import de.htwg.se.malefiz.Malefiz.controller
 import de.htwg.se.malefiz.aview.Tui
 import de.htwg.se.malefiz.controller.controllerComponent
 import de.htwg.se.malefiz.controller.controllerComponent.{ControllerInterface, Statements}
+import de.htwg.se.malefiz.model.gameBoardComponent.GameBoardInterface
+import de.htwg.se.malefiz.model.gameBoardComponent.gameBoardBaseImpl.Point
+import de.htwg.se.malefiz.model.playerComponent.Player
+import play.api.libs.json.{JsNumber, JsValue, Json, Writes}
+import play.api._
+import play.api.mvc._
+import de.htwg.se.malefiz.controller.controllerComponent.Statements
+import de.htwg.se.malefiz.controller.controllerComponent.StatementRequest
+import play.api.libs.json.JsNull.as
+import play.api.libs.json.{JsValue, Json}
+
+import scala.util.{Failure, Success}
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
@@ -16,11 +31,14 @@ import de.htwg.se.malefiz.controller.controllerComponent.{ControllerInterface, S
 class MalefizController @Inject()(val controllerComponents: ControllerComponents) extends BaseController {
 
   val gameController: ControllerInterface = Malefiz.controller
+  val gameBoard: GameBoardInterface = gameController.getGameBoard
+  val statementStatus: String = Statements.value(StatementRequest(controller))
 
   def malefizAsText: String =
     gameController.gameBoardToString +
-    gameController.getPlayer.mkString("\n") + "\n" +
-    Statements.value(controllerComponent.StatementRequest(gameController))
+      gameController.getPlayer.mkString("\n") + "\n" +
+      Statements.value(controllerComponent.StatementRequest(gameController))
+
 
   /**
    * Create an Action to render an HTML page.
@@ -41,6 +59,42 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
     gameController.execute(cmd)
     Ok(views.html.gameboard(controller = gameController))
   }
+
+
+  def processJson: Action[JsValue] = Action(parse.json) {
+    request: Request[JsValue] => {
+      val input = (request.body \ "data").as[String]
+      gameController.execute(input)
+      Ok(Json.obj(
+        "players" -> Json.toJson(
+          for {
+            p <- gameBoard.getPlayer
+          } yield Json.toJson(p)
+        ),
+        "statement" -> statementStatus,
+        "playersTurn" -> gameController.getPlayersTurn,
+        "diceNumber" -> gameController.getDicedNumber,
+        //      "selectedFigure1" -> gameController.getSelectedFigure._1,
+        //      "selectedFigure2" -> gameController.getSelectedFigure._2,
+        "gameState" -> gameController.getGameState.state.toString,
+        "possibleCells" -> gameBoard.getPossibleCells,
+        "cells" -> Json.toJson(
+          for {
+            c <- gameBoard.getCellList
+          } yield {
+            Json.obj(
+              "cellNumber" -> c.cellNumber,
+              "playerNumber" -> c.playerNumber,
+              "figureNumber" -> c.figureNumber,
+              "hasWall" -> c.hasWall,
+              "coordinates" -> c.coordinates
+            )
+          }
+        )
+      ))
+    }
+  }
+
 
   def newGameGET: Action[AnyContent] = Action {
     Ok(views.html.gameboard(controller = gameController))
@@ -65,12 +119,59 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
 
   }
 
-  def gameRules = Action {
+  def gameRules: Action[AnyContent] = Action {
     Ok(views.html.gamerules())
   }
 
-  def test = Action {
-    Ok(views.html.gameboard(controller = gameController))
+  def test: Action[AnyContent] = Action {
+    Ok(views.html.gameboard2(controller = gameController))
+  }
+
+  implicit val pointWrites: Writes[Point] = (point: Point) => {
+    Json.obj(
+      "x" -> JsNumber(point.x_coordinate),
+      "y" -> JsNumber(point.y_coordinate)
+    )
+  }
+
+  implicit val playerWrites: Writes[Player] = (player: Player) => {
+    Json.obj(
+      "playerNumber" -> player.playerNumber,
+      "name" -> player.name
+    )
+  }
+
+
+  def controllerToJson: Action[AnyContent] = Action {
+    println(gameController.getPlayersTurn)
+    Ok(Json.obj(
+      "players" -> Json.toJson(
+        for {
+          p <- gameBoard.getPlayer
+        } yield Json.toJson(p)
+      ),
+      "statement" -> statementStatus,
+      "playersTurn" -> gameController.getPlayersTurn,
+      "diceNumber" -> gameController.getDicedNumber,
+      //      "selectedFigure1" -> gameController.getSelectedFigure._1,
+      //      "selectedFigure2" -> gameController.getSelectedFigure._2,
+      "gameState" -> gameController.getGameState.state.toString,
+      "possibleCells" -> gameBoard.getPossibleCells,
+      "cells" -> Json.toJson(
+        for {
+          c <- gameBoard.getCellList
+        } yield {
+          Json.obj(
+            "cellNumber" -> c.cellNumber,
+            "playerNumber" -> c.playerNumber,
+            "figureNumber" -> c.figureNumber,
+            "hasWall" -> c.hasWall,
+            "coordinates" -> c.coordinates,
+            "possibleCell" -> c.possibleCells
+          )
+        }
+      )
+    ))
   }
 
 

@@ -1,0 +1,332 @@
+@import de.htwg.se.malefiz.controller.controllerComponent.Statements
+@import de.htwg.se.malefiz.controller.controllerComponent.StatementRequest
+@(controller: de.htwg.se.malefiz.controller.controllerComponent.ControllerInterface)
+@main("Training") {
+    <head>
+        <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/gameboard.css")' />
+    </head>
+    <body>
+
+        <div class="container">
+            <div class="row ">
+                <h1>MALEFIZ</h1>
+                <div class="col-sm-7 col-md-7 col-lg-7 col-xl-8">
+                    <div class="square">
+
+                        @*17*@
+                        @for(n <- 0 to 7) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="131" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 7) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+
+                        @*16*@
+
+                        @for(n <- 114 to 130) {
+                            <div id="@n" class="field align-items-center justify-content-center d-flex">
+
+                            </div>
+                        }
+
+                        @*15*@
+
+                        <div id="112" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 14) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="113" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+
+                        @*14*@
+
+                        @for(n <- 95 to 111) {
+                            <div id="@n" class="field align-items-center justify-content-center d-flex">
+
+                            </div>
+                        }
+
+                        @*13*@
+
+                        @for(n <- 0 to 7) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="94" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 7) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+
+                        @*12*@
+
+                        @for(n <- 0 to 5) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        @for(n <- 89 to 93) {
+                            <div id="@n" class="field align-items-center justify-content-center d-flex">
+
+                            </div>
+                        }
+                        @for(n <- 0 to 5) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+
+                        @*11*@
+
+                        @for(n <- 0 to 5) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="87" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 2) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="88" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 5) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+
+                        @*10*@
+
+                        @for(n <- 0 to 3) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        @for(n <- 78 to 86) {
+                            <div id="@n" class="field align-items-center justify-content-center d-flex">
+
+                            </div>
+                        }
+                        @for(n <- 0 to 3) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+
+                        @*9*@
+
+                        @for(n <- 0 to 3) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="76" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 6) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="77" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 3) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+
+                        @*8*@
+
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+
+                        @for(n <- 63 to 75) {
+                            <div id="@n" class="field align-items-center justify-content-center d-flex">
+                            </div>
+                        }
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+
+                        @*7*@
+
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="59" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 2) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="60" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 2) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="61" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 2) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="62" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+
+                        @*6*@
+
+                        @for(n <- 42 to 58) {
+                            <div id="@n" class="field align-items-center justify-content-center d-flex">
+
+                            </div>
+                        }
+
+                        @*5*@
+
+                        <div id="37" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 2) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+
+                        <div id="38" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 2) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="39" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 2) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="40" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        @for(n <- 0 to 2) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="41" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+
+                        @*4*@
+
+                        @for(n <- 20 to 36) {
+                            <div id="@n" class="field align-items-center justify-content-center d-flex">
+
+                            </div>
+                        }
+
+                        @*3*@
+
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="4" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        @for(n <- 0 to 2) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="9" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        @for(n <- 0 to 2) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="14" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        @for(n <- 0 to 2) {
+                            <div class="empty align-items-center justify-content-center d-flex"></div>
+                        }
+                        <div id="19" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+
+                        @*2*@
+
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="2" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="3" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="7" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="8" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="12" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="13" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="17" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="18" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+
+                        @*1*@
+
+                        <div class="empty align-items-center justify-content-center d-flex">
+                        </div>
+                        <div id="0" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="1" class="field align-items-center justify-content-center d-flex">
+
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="5" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="6" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="10" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="11" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="15" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="16" class="field align-items-center justify-content-center d-flex">
+                        </div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 ">
+                    <div class="container align-items-center justify-content-center">
+                        <div class="row">
+                            <div class="square4Info">
+                                <div class="col"><p class="statementText">@Statements.value(StatementRequest(controller))</p></div>
+                                <div class="col">
+
+
+                                    <div class="box">
+                                        <div>
+                                            @* Number of Dice to use*@
+                                            @* <input id="number1" type="number" value=2>*@
+                                            <button input="some" class="button-5" onclick="rollDiceWithoutValues();
+                                            process(this)">ROLL!</button>
+                                        </div>
+                                        <div id="dice-box1"></div>
+                                        <input id="winner" type="hidden" value=@controller.getPlayersTurn.name>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </body>
+}

@@ -792,9 +792,14 @@
 
                         <div class="empty align-items-center justify-content-center d-flex">
                         </div>
+@*                        <div class="field align-items-center justify-content-center d-flex">*@
+@*                        @if(controller.getCellList(0).playerNumber != 0) {*@
+@*                            <div class="figure-1" onClick="process('@controller.getCellList(0).playerNumber @controller.getCellList(0).figureNumber')"></div>*@
+@*                        }*@
+@*                        </div>*@
                         <div class="field align-items-center justify-content-center d-flex">
                         @if(controller.getCellList(0).playerNumber != 0) {
-                            <div class="figure-1" onClick="process('@controller.getCellList(0).playerNumber @controller.getCellList(0).figureNumber')"></div>
+                            <div class="figure-1" x="Heey" id="cell-0" onClick="onClickCell(this)"></div>
                         }
                         </div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
@@ -885,6 +890,6 @@
 
 
 
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </body>
 }

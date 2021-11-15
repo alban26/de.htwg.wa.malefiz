@@ -1,4 +1,4 @@
-// import swal from 'sweetalert';
+import swal from 'sweetalert';
 function process(input) {
     console.log(input)
 
@@ -8,13 +8,13 @@ function process(input) {
         if (input === 'some') {
             rollDiceWithoutValues()
             window.setTimeout(function () {
-                location.replace("/newGame")
+                location.replace("/newGame2")
             }, 2000)
         } else if (input === '131') {
             win(document.getElementById('winner').value);
             // window.location.replace("/");
         } else {
-            window.location.replace("/newGame");
+            window.location.replace("/newGame2");
         }
     })//.then(()  => window.location.reload());
 }
@@ -114,3 +114,22 @@ checkbox2.addEventListener('change', () => {
     document.getElementById('rules-main').classList.toggle('visually-hidden')
     document.getElementById('arrow').classList.toggle('up')
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

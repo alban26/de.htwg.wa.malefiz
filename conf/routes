@@ -13,9 +13,13 @@ POST    /command/:cmd               controllers.MalefizController.processCMD(cmd
 POST     /newGame                   controllers.MalefizController.newGamePOST
 GET      /newGame                   controllers.MalefizController.newGameGET
 
+GET      /newGame2                  controllers.MalefizController.test
+
 GET      /gameRules                 controllers.MalefizController.gameRules
 
-GET      /test                      controllers.MalefizController.test
+
+GET      /json                      controllers.MalefizController.controllerToJson
+POST     /json                      controllers.MalefizController.processJson
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
