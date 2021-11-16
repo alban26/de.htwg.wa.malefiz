@@ -17,22 +17,6 @@ function updateController() {
     });
 }
 
-
-function getRequest(url) {
-    return $.ajax({
-        method: "GET",
-        url: url,
-        dataType: "json",
-
-        success: function (response) {
-            controller = response;
-        },
-        error: function (response) {
-            console.error(response);
-        }
-    });
-}
-
 function postRequest(method, url, data) {
     return $.ajax({
         method: method,
@@ -75,9 +59,7 @@ function validateForm(assignmentForm) {
         })
         return false;
     } else {
-
         return true;
-
     }
 }
 
@@ -217,5 +199,3 @@ function updateGameboard() {
 
     })
 }
-
-
