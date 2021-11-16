@@ -17,833 +17,194 @@
                         @for(n <- 0 to 7) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(131).playerNumber != 0 && !controller.getCellList(131).hasWall) {
-                            @if(controller.getCellList(131).possibleCells) {
-                                <div class="figure-@{controller.getCellList(131).playerNumber}-circle" onClick="process('@controller.getCellList(131).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(131).playerNumber}" onClick="process('@controller.getCellList(131).playerNumber @controller.getCellList(131).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(131).hasWall) {
-                                @if(controller.getCellList(131).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(131).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(131).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(131).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(131).cellNumber')"></div>
-                                }
-                            }
-                            <div class="modified-cell" onClick="process('@controller.getCellList(131).cellNumber')"></div>
-                        }
-                        </div>
+                        <div id="131" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 7) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-
                         @*16*@
-
                         @for(n <- 114 to 130) {
-                            <div class="field align-items-center justify-content-center d-flex">
-                            @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
-                                @if(controller.getCellList(n).possibleCells) {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                } else {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}" onClick="process('@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(n).hasWall) {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="wall-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    } else {
-                                        <div class="wall" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                } else {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="possible-cell" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                    @if(controller.getGameState.state.toString == "5") {
-                                        <div class="possible-wall" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                }
-                            }
-                            </div>
+                            <div id="@n" class="field align-items-center justify-content-center d-flex"></div>
                         }
-
                         @*15*@
-
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(112).playerNumber != 0 && !controller.getCellList(112).hasWall) {
-                            @if(controller.getCellList(112).possibleCells) {
-                                <div class="figure-@{controller.getCellList(112).playerNumber}-circle" onClick="process('@controller.getCellList(112).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(112).playerNumber}" onClick="process('@controller.getCellList(112).playerNumber @controller.getCellList(112).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(112).hasWall) {
-                                @if(controller.getCellList(112).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(112).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(112).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(112).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(112).cellNumber')"></div>
-                                }
-                                @if(controller.getGameState.state.toString == "5") {
-                                    <div class="possible-wall" onClick="process('@controller.getCellList(112).cellNumber')"></div>
-                                }
-                            }
-                        }
+                        <div id="112" class="field align-items-center justify-content-center d-flex">
                         </div>
                         @for(n <- 0 to 14) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(113).playerNumber != 0 && !controller.getCellList(113).hasWall) {
-                            @if(controller.getCellList(113).possibleCells) {
-                                <div class="figure-@{controller.getCellList(113).playerNumber}-circle" onClick="process('@controller.getCellList(113).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(113).playerNumber}" onClick="process('@controller.getCellList(113).playerNumber @controller.getCellList(113).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(113).hasWall) {
-                                @if(controller.getCellList(113).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(113).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(113).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(113).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(113).cellNumber')"></div>
-                                }
-                                @if(controller.getGameState.state.toString == "5") {
-                                    <div class="possible-wall" onClick="process('@controller.getCellList(113).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
-
+                        <div id="113" class="field align-items-center justify-content-center d-flex"></div>
                         @*14*@
-
                         @for(n <- 95 to 111) {
-                            <div class="field align-items-center justify-content-center d-flex">
-                            @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
-                                @if(controller.getCellList(n).possibleCells) {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                } else {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}" onClick="process('@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(n).hasWall) {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="wall-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    } else {
-                                        <div class="wall" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                } else {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="possible-cell" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                    @if(controller.getGameState.state.toString == "5") {
-                                        <div class="possible-wall" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                }
-                            }
-                            </div>
+                            <div id="@n" class="field align-items-center justify-content-center d-flex"></div>
                         }
-
                         @*13*@
-
                         @for(n <- 0 to 7) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(94).playerNumber != 0 && !controller.getCellList(94).hasWall) {
-                            @if(controller.getCellList(94).possibleCells) {
-                                <div class="figure-@{controller.getCellList(94).playerNumber}-circle" onClick="process('@controller.getCellList(94).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(94).playerNumber}" onClick="process('@controller.getCellList(94).playerNumber @controller.getCellList(94).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(94).hasWall) {
-                                @if(controller.getCellList(94).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(94).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(94).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(94).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(94).cellNumber')"></div>
-                                }
-                                @if(controller.getGameState.state.toString == "5") {
-                                    <div class="possible-wall" onClick="process('@controller.getCellList(94).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
+                        <div id="94" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 7) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-
                         @*12*@
-
                         @for(n <- 0 to 5) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
                         @for(n <- 89 to 93) {
-                            <div class="field align-items-center justify-content-center d-flex">
-                            @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
-                                @if(controller.getCellList(n).possibleCells) {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                } else {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}" onClick="process('@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(n).hasWall) {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="wall-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    } else {
-                                        <div class="wall" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                } else {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="possible-cell" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                    @if(controller.getGameState.state.toString == "5") {
-                                        <div class="possible-wall" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                }
-                            }
-                            </div>
+                            <div id="@n" class="field align-items-center justify-content-center d-flex"></div>
                         }
                         @for(n <- 0 to 5) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-
                         @*11*@
-
                         @for(n <- 0 to 5) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(87).playerNumber != 0 && !controller.getCellList(87).hasWall) {
-                            @if(controller.getCellList(87).possibleCells) {
-                                <div class="figure-@{controller.getCellList(87).playerNumber}-circle" onClick="process('@controller.getCellList(87).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(87).playerNumber}" onClick="process('@controller.getCellList(87).playerNumber @controller.getCellList(87).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(87).hasWall) {
-                                @if(controller.getCellList(87).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(87).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(87).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(87).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(87).cellNumber')"></div>
-                                }
-                                @if(controller.getGameState.state.toString == "5") {
-                                    <div class="possible-wall" onClick="process('@controller.getCellList(87).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
+                        <div id="87" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 2) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(88).playerNumber != 0 && !controller.getCellList(88).hasWall) {
-                            @if(controller.getCellList(88).possibleCells) {
-                                <div class="figure-@{controller.getCellList(88).playerNumber}-circle" onClick="process('@controller.getCellList(88).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(88).playerNumber}" onClick="process('@controller.getCellList(88).playerNumber @controller.getCellList(88).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(88).hasWall) {
-                                @if(controller.getCellList(88).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(88).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(88).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(88).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(88).cellNumber')"></div>
-                                }
-                                @if(controller.getGameState.state.toString == "5") {
-                                    <div class="possible-wall" onClick="process('@controller.getCellList(88).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
+                        <div id="88" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 5) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-
                         @*10*@
-
                         @for(n <- 0 to 3) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
                         @for(n <- 78 to 86) {
-                            <div class="field align-items-center justify-content-center d-flex">
-                            @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
-                                @if(controller.getCellList(n).possibleCells) {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                } else {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}" onClick="process('@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(n).hasWall) {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="wall-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    } else {
-                                        <div class="wall" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                } else {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="possible-cell" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                    @if(controller.getGameState.state.toString == "5") {
-                                        <div class="possible-wall" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                }
-                            }
-                            </div>
+                            <div id="@n" class="field align-items-center justify-content-center d-flex"></div>
                         }
                         @for(n <- 0 to 3) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-
                         @*9*@
-
                         @for(n <- 0 to 3) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(76).playerNumber != 0 && !controller.getCellList(76).hasWall) {
-                            @if(controller.getCellList(76).possibleCells) {
-                                <div class="figure-@{controller.getCellList(76).playerNumber}-circle" onClick="process('@controller.getCellList(76).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(76).playerNumber}" onClick="process('@controller.getCellList(76).playerNumber @controller.getCellList(76).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(76).hasWall) {
-                                @if(controller.getCellList(76).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(76).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(76).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(76).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(76).cellNumber')"></div>
-                                }
-                                @if(controller.getGameState.state.toString == "5") {
-                                    <div class="possible-wall" onClick="process('@controller.getCellList(76).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
+                        <div id="76" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 6) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(77).playerNumber != 0 && !controller.getCellList(77).hasWall) {
-                            @if(controller.getCellList(77).possibleCells) {
-                                <div class="figure-@{controller.getCellList(77).playerNumber}-circle" onClick="process('@controller.getCellList(77).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(77).playerNumber}" onClick="process('@controller.getCellList(77).playerNumber @controller.getCellList(77).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(77).hasWall) {
-                                @if(controller.getCellList(77).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(77).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(77).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(77).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(77).cellNumber')"></div>
-                                }
-                                @if(controller.getGameState.state.toString == "5") {
-                                    <div class="possible-wall" onClick="process('@controller.getCellList(77).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
+                        <div id="77" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 3) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-
                         @*8*@
-
                         <div class="empty align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-
                         @for(n <- 63 to 75) {
-                            <div class="field align-items-center justify-content-center d-flex">
-                            @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
-                                @if(controller.getCellList(n).possibleCells) {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                } else {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}" onClick="process('@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(n).hasWall) {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="wall-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    } else {
-                                        <div class="wall" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                } else {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="possible-cell" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                    @if(controller.getGameState.state.toString == "5") {
-                                        <div class="possible-wall" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                }
-                            }
+                            <div id="@n" class="field align-items-center justify-content-center d-flex">
                             </div>
                         }
                         <div class="empty align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-
                         @*7*@
-
                         <div class="empty align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(59).playerNumber != 0 && !controller.getCellList(59).hasWall) {
-                            @if(controller.getCellList(59).possibleCells) {
-                                <div class="figure-@{controller.getCellList(59).playerNumber}-circle" onClick="process('@controller.getCellList(59).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(59).playerNumber}" onClick="process('@controller.getCellList(59).playerNumber @controller.getCellList(59).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(59).hasWall) {
-                                @if(controller.getCellList(59).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(59).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(59).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(59).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(59).cellNumber')"></div>
-                                }
-                                @if(controller.getGameState.state.toString == "5") {
-                                    <div class="possible-wall" onClick="process('@controller.getCellList(59).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
+                        <div id="59" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 2) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(60).playerNumber != 0 && !controller.getCellList(60).hasWall) {
-                            @if(controller.getCellList(60).possibleCells) {
-                                <div class="figure-@{controller.getCellList(60).playerNumber}-circle" onClick="process('@controller.getCellList(60).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(60).playerNumber}" onClick="process('@controller.getCellList(60).playerNumber @controller.getCellList(60).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(60).hasWall) {
-                                @if(controller.getCellList(60).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(60).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(60).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(60).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(60).cellNumber')"></div>
-                                }
-                                @if(controller.getGameState.state.toString == "5") {
-                                    <div class="possible-wall" onClick="process('@controller.getCellList(60).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
+                        <div id="60" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 2) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(61).playerNumber != 0 && !controller.getCellList(61).hasWall) {
-                            @if(controller.getCellList(61).possibleCells) {
-                                <div class="figure-@{controller.getCellList(61).playerNumber}-circle" onClick="process('@controller.getCellList(61).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(61).playerNumber}" onClick="process('@controller.getCellList(61).playerNumber @controller.getCellList(61).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(61).hasWall) {
-                                @if(controller.getCellList(61).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(61).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(61).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(61).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(61).cellNumber')"></div>
-                                }
-                                @if(controller.getGameState.state.toString == "5") {
-                                    <div class="possible-wall" onClick="process('@controller.getCellList(61).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
+                        <div id="61" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 2) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(62).playerNumber != 0 && !controller.getCellList(62).hasWall) {
-                            @if(controller.getCellList(62).possibleCells) {
-                                <div class="figure-@{controller.getCellList(62).playerNumber}-circle" onClick="process('@controller.getCellList(62).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(62).playerNumber}" onClick="process('@controller.getCellList(62).playerNumber @controller.getCellList(62).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(62).hasWall) {
-                                @if(controller.getCellList(62).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(62).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(62).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(62).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(62).cellNumber')"></div>
-                                }
-                                @if(controller.getGameState.state.toString == "5") {
-                                    <div class="possible-wall" onClick="process('@controller.getCellList(62).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
+                        <div id="62" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
 
                         @*6*@
-
                         @for(n <- 42 to 58) {
-                            <div class="field align-items-center justify-content-center d-flex">
-                            @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
-                                @if(controller.getCellList(n).possibleCells) {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                } else {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}" onClick="process('@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(n).hasWall) {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="wall-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    } else {
-                                        <div class="wall" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                } else {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="possible-cell" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                    @if(controller.getGameState.state.toString == "5") {
-                                        <div class="possible-wall" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                }
-                            }
-                            </div>
+                            <div id="@n" class="field align-items-center justify-content-center d-flex"></div>
                         }
 
                         @*5*@
+                        <div id="37" class="field align-items-center justify-content-center d-flex">
 
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(37).playerNumber != 0 && !controller.getCellList(37).hasWall) {
-                            @if(controller.getCellList(37).possibleCells) {
-                                <div class="figure-@{controller.getCellList(37).playerNumber}-circle" onClick="process('@controller.getCellList(37).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(37).playerNumber}" onClick="process('@controller.getCellList(37).playerNumber @controller.getCellList(37).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(37).hasWall) {
-                                @if(controller.getCellList(37).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(37).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(37).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(37).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(37).cellNumber')"></div>
-                                }
-                            }
-                        }
                         </div>
                         @for(n <- 0 to 2) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
 
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(38).playerNumber != 0 && !controller.getCellList(38).hasWall) {
-                            @if(controller.getCellList(38).possibleCells) {
-                                <div class="figure-@{controller.getCellList(38).playerNumber}-circle" onClick="process('@controller.getCellList(38).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(38).playerNumber}" onClick="process('@controller.getCellList(38).playerNumber @controller.getCellList(38).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(38).hasWall) {
-                                @if(controller.getCellList(38).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(38).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(38).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(38).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(38).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
+                        <div id="38" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 2) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(39).playerNumber != 0 && !controller.getCellList(39).hasWall) {
-                            @if(controller.getCellList(39).possibleCells) {
-                                <div class="figure-@{controller.getCellList(39).playerNumber}-circle" onClick="process('@controller.getCellList(39).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(39).playerNumber}" onClick="process('@controller.getCellList(39).playerNumber @controller.getCellList(39).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(39).hasWall) {
-                                @if(controller.getCellList(39).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(39).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(39).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(39).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(39).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
+                        <div id="39" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 2) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(40).playerNumber != 0 && !controller.getCellList(40).hasWall) {
-                            @if(controller.getCellList(40).possibleCells) {
-                                <div class="figure-@{controller.getCellList(40).playerNumber}-circle" onClick="process('@controller.getCellList(40).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(40).playerNumber}" onClick="process('@controller.getCellList(40).playerNumber @controller.getCellList(40).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(40).hasWall) {
-                                @if(controller.getCellList(40).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(40).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(40).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(40).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(40).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
+                        <div id="40" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 2) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(41).playerNumber != 0 && !controller.getCellList(41).hasWall) {
-                            @if(controller.getCellList(41).possibleCells) {
-                                <div class="figure-@{controller.getCellList(41).playerNumber}-circle" onClick="process('@controller.getCellList(41).cellNumber')"></div>
-                            } else {
-                                <div class="figure-@{controller.getCellList(41).playerNumber}" onClick="process('@controller.getCellList(41).playerNumber @controller.getCellList(41).figureNumber')"></div>
-                            }
-                        } else {
-                            @if(controller.getCellList(41).hasWall) {
-                                @if(controller.getCellList(41).possibleCells) {
-                                    <div class="wall-circle" onClick="process('@controller.getCellList(41).cellNumber')"></div>
-                                } else {
-                                    <div class="wall" onClick="process('@controller.getCellList(41).cellNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(41).possibleCells) {
-                                    <div class="possible-cell" onClick="process('@controller.getCellList(41).cellNumber')"></div>
-                                }
-                            }
-                        }
-                        </div>
+                        <div id="41" class="field align-items-center justify-content-center d-flex"></div>
 
                         @*4*@
-
                         @for(n <- 20 to 36) {
-                            <div class="field align-items-center justify-content-center d-flex">
-                            @if(controller.getCellList(n).playerNumber != 0 && !controller.getCellList(n).hasWall) {
-                                @if(controller.getCellList(n).possibleCells) {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                } else {
-                                    <div class="figure-@{controller.getCellList(n).playerNumber}" onClick="process('@controller.getCellList(n).playerNumber @controller.getCellList(n).figureNumber')"></div>
-                                }
-                            } else {
-                                @if(controller.getCellList(n).hasWall) {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="wall-circle" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    } else {
-                                        <div class="wall" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                } else {
-                                    @if(controller.getCellList(n).possibleCells) {
-                                        <div class="possible-cell" onClick="process('@controller.getCellList(n).cellNumber')"></div>
-                                    }
-                                }
-                            }
-                            </div>
+                            <div id="@n" class="field align-items-center justify-content-center d-flex"></div>
                         }
 
                         @*3*@
-
                         <div class="empty align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(4).playerNumber != 0) {
-                            <div class="figure-1" onClick="process('@controller.getCellList(4).playerNumber @controller.getCellList(4).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="4" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 2) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(9).playerNumber != 0) {
-                            <div class="figure-2" onClick="process('@controller.getCellList(9).playerNumber @controller.getCellList(9).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="9" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 2) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(14).playerNumber != 0) {
-                            <div class="figure-3" onClick="process('@controller.getCellList(14).playerNumber @controller.getCellList(14).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="14" class="field align-items-center justify-content-center d-flex"></div>
                         @for(n <- 0 to 2) {
                             <div class="empty align-items-center justify-content-center d-flex"></div>
                         }
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(19).playerNumber != 0) {
-                            <div class="figure-4" onClick="process('@controller.getCellList(19).playerNumber @controller.getCellList(19).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="19" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
 
                         @*2*@
 
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(2).playerNumber != 0) {
-                            <div class="figure-1" onClick="process('@controller.getCellList(2).playerNumber @controller.getCellList(2).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="2" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(3).playerNumber != 0) {
-                            <div class="figure-1" onClick="process('@controller.getCellList(3).playerNumber @controller.getCellList(3).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="3" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(7).playerNumber != 0) {
-                            <div class="figure-2" onClick="process('@controller.getCellList(7).playerNumber @controller.getCellList(7).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="7" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(8).playerNumber != 0) {
-                            <div class="figure-2" onClick="process('@controller.getCellList(8).playerNumber @controller.getCellList(8).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="8" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(12).playerNumber != 0) {
-                            <div class="figure-3" onClick="process('@controller.getCellList(12).playerNumber @controller.getCellList(12).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="12" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(13).playerNumber != 0) {
-                            <div class="figure-3" onClick="process('@controller.getCellList(13).playerNumber @controller.getCellList(13).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="13" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(17).playerNumber != 0) {
-                            <div class="figure-4" onClick="process('@controller.getCellList(17).playerNumber @controller.getCellList(17).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="17" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(18).playerNumber != 0) {
-                            <div class="figure-4" onClick="process('@controller.getCellList(18).playerNumber @controller.getCellList(18).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="18" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
 
                         @*1*@
 
-                        <div class="empty align-items-center justify-content-center d-flex">
-                        </div>
-@*                        <div class="field align-items-center justify-content-center d-flex">*@
-@*                        @if(controller.getCellList(0).playerNumber != 0) {*@
-@*                            <div class="figure-1" onClick="process('@controller.getCellList(0).playerNumber @controller.getCellList(0).figureNumber')"></div>*@
-@*                        }*@
-@*                        </div>*@
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(0).playerNumber != 0) {
-                            <div class="figure-1" x="Heey" id="cell-0" onClick="onClickCell(this)"></div>
-                        }
-                        </div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(1).playerNumber != 0) {
-                            <div class="figure-1" onClick="process('@controller.getCellList(1).playerNumber @controller.getCellList(1).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="0" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(5).playerNumber != 0) {
-                            <div class="figure-2" onClick="process('@controller.getCellList(5).playerNumber @controller.getCellList(5).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="1" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(6).playerNumber != 0) {
-                            <div class="figure-2" onClick="process('@controller.getCellList(6).playerNumber @controller.getCellList(6).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="5" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(10).playerNumber != 0) {
-                            <div class="figure-3" onClick="process('@controller.getCellList(10).playerNumber @controller.getCellList(10).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="6" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(11).playerNumber != 0) {
-                            <div class="figure-3" onClick="process('@controller.getCellList(11).playerNumber @controller.getCellList(11).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="10" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(15).playerNumber != 0) {
-                            <div class="figure-4" onClick="process('@controller.getCellList(15).playerNumber @controller.getCellList(15).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="11" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
-                        <div class="field align-items-center justify-content-center d-flex">
-                        @if(controller.getCellList(16).playerNumber != 0) {
-                            <div class="figure-4" onClick="process('@controller.getCellList(16).playerNumber @controller.getCellList(16).figureNumber')"></div>
-                        }
-                        </div>
+                        <div id="15" class="field align-items-center justify-content-center d-flex"></div>
+                        <div class="empty align-items-center justify-content-center d-flex"></div>
+                        <div id="16" class="field align-items-center justify-content-center d-flex"></div>
                         <div class="empty align-items-center justify-content-center d-flex"></div>
                     </div>
                 </div>
@@ -851,35 +212,20 @@
                     <div class="container align-items-center justify-content-center">
                         <div class="row">
                             <div class="square4Info">
-                                <div class="col"><p class="statementText">@Statements.value(StatementRequest(controller))</p></div>
+                                <div class="col"><p id="statement" class="statementText"></p></div>
                                 <div class="col">
-
 
                                     <div class="box">
                                         <div>
-@*                                            Number of Dice to use*@
-@*                                            <input id="number1" type="number" value=2>*@
-                                                <button class="button-5" onclick="rollDiceWithoutValues(); process('some')">ROLL!</button>
+                                            @* Number of Dice to use*@
+                                            @* <input id="number1" type="number" value=2>*@
+                                            <button gameInput="some" class="button-5" onclick="rollDiceWithoutValues();
+                                            process(this)">ROLL!</button>
                                         </div>
                                         <div id="dice-box1"></div>
                                         <input id="winner" type="hidden" value=@controller.getPlayersTurn.name>
                                     </div>
 
-@*                                    <div class="box">*@
-@*                                        <div>*@
-@*                                            <span>*@
-@*                                                <label>Number of Dice to use</label>*@
-@*                                                <input id="number2" type="number" value=1>*@
-@*                                            </span>*@
-@*                                            <span>*@
-@*                                                <label>Values</label>*@
-@*                                                <input id="values2" type="hidden" value=@controller.getDicedNumber>*@
-@*                                                <button onclick="rollDiceWithValues()">roll</button>*@
-@*                                            </span>*@
-@*                                        </div>*@
-@*                                        <div id="dice-box2"></div>*@
-@*                                    </div>*@
-@*                                    <div class="dice" onClick="process('some')"></div>*@
                                 </div>
                             </div>
                         </div>
@@ -887,9 +233,6 @@
                 </div>
             </div>
         </div>
-
-
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </body>
 }

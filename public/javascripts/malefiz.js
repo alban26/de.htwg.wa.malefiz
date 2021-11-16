@@ -1,24 +1,54 @@
-import swal from 'sweetalert';
-function process(input) {
-    console.log(input)
+$(document).ready(function () {
+    updateGameboard();
+    updateStatement();
+    updateController();
+});
+// Global variables
+var controller = {};
 
-    fetch('/command/' + input, {
-        method: 'post',
-    }).then(() => {
-        if (input === 'some') {
-            rollDiceWithoutValues()
-            window.setTimeout(function () {
-                location.replace("/newGame2")
-            }, 2000)
-        } else if (input === '131') {
-            win(document.getElementById('winner').value);
-            // window.location.replace("/");
-        } else {
-            window.location.replace("/newGame2");
+function updateController() {
+    return $.ajax({
+        method: "GET",
+        url: "/json",
+        dataType: "json",
+        success: function (response) {
+            controller = response;
         }
-    })//.then(()  => window.location.reload());
+    });
 }
 
+
+function getRequest(url) {
+    return $.ajax({
+        method: "GET",
+        url: url,
+        dataType: "json",
+
+        success: function (response) {
+            controller = response;
+        },
+        error: function (response) {
+            console.error(response);
+        }
+    });
+}
+
+function postRequest(method, url, data) {
+    return $.ajax({
+        method: method,
+        url: url,
+        data: JSON.stringify(data),
+        dataType: "json",
+        contentType: "application/json",
+
+        success: function (response) {
+            controller = response;
+        },
+        error: function (response) {
+            console.error(response);
+        }
+    });
+}
 
 function validateForm(assignmentForm) {
 
@@ -45,14 +75,16 @@ function validateForm(assignmentForm) {
         })
         return false;
     } else {
+
         return true;
+
     }
 }
 
 
 function win(winner) {
     Swal.fire({
-        title: 'Herzlichen Glückwunsch '+ winner + 'du hast gewonnen',
+        title: 'Herzlichen Glückwunsch ' + winner + 'du hast gewonnen',
         width: 1000,
         padding: '3em',
         backdrop: `
@@ -116,20 +148,74 @@ checkbox2.addEventListener('change', () => {
 });
 
 
+function rollDiceWithoutValues() {
+    const element = document.getElementById('dice-box1');
+    const numberOfDice = 4//+document.getElementById('number1').value;
+    const options = {
+        element, // element to display the animated dice in.
+        numberOfDice, // number of dice to use
+        callback: response
+    }
+    rollADie(options);
+}
 
+function process(source) {
+    let input = source.getAttribute("gameInput");
 
+    postRequest("POST", "/json", {"data": input}).then(() => {
+            updateGameboard();
+            updateStatement();
+    })
+}
 
+function updateStatement() {
+    updateController().then(() => {
+        $('#statement').html(controller.statement)
 
+    })
+}
 
+function updateGameboard() {
+    updateController().then(() => {
 
+        for (let k = 0; k < 132; ++k) {
 
+            let cellSelector = $('#' + k)
+            let playerNumber = controller.cells[k].playerNumber;
+            let figureNumber = controller.cells[k].figureNumber;
+            let hasWall = controller.cells[k].hasWall;
+            let possibleCell = controller.cells[k].possibleCell;
+            let gameState = controller.gameState;
+            let cellNumber = controller.cells[k].cellNumber;
 
+            cellSelector.empty();
 
+            if (playerNumber !== 0 && !hasWall) {
+                if (possibleCell) {
+                    cellSelector.html('<div gameInput="' + cellNumber + '" class="figure-' + playerNumber + '-circle" onClick="process(this)"></div>')
+                } else {
+                    cellSelector.html('<div gameInput="' + playerNumber + ' ' + figureNumber + '" class="figure-' + playerNumber + '" onClick="process(this)"></div>')
+                }
+            } else {
+                if (hasWall) {
+                    if (possibleCell) {
+                        cellSelector.html('<div gameInput="' + cellNumber + '" class="wall-circle" onClick="process(this)"></div>')
+                    } else {
+                        cellSelector.html('<div gameInput="' + cellNumber + '" class="wall" onClick="process(this)"></div>')
+                    }
+                } else {
+                    if (possibleCell) {
+                        cellSelector.html('<div gameInput="' + cellNumber + '" class="possible-cell" onClick="process(this)"></div>')
+                    }
+                    if (gameState === "5") {
+                        cellSelector.html('<div gameInput="' + cellNumber + '" class="possible-wall" onClick="process(this)"></div>')
+                    }
+                }
+            }
 
+        }
 
-
-
-
-
+    })
+}
 
 

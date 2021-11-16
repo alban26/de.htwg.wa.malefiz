@@ -66,7 +66,6 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
     request: Request[JsValue] => {
       val input = (request.body \ "data").as[String]
       gameController.execute(input)
-      this.controllerToJson()
       Ok(Json.obj(
         "players" -> Json.toJson(
           for {
@@ -76,8 +75,6 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
         "statement" -> statementStatus,
         "playersTurn" -> gameController.getPlayersTurn,
         "diceNumber" -> gameController.getDicedNumber,
-        //      "selectedFigure1" -> gameController.getSelectedFigure._1,
-        //      "selectedFigure2" -> gameController.getSelectedFigure._2,
         "gameState" -> gameController.getGameState.state.toString,
         "possibleCells" -> gameController.getGameBoard.getPossibleCells,
         "cells" -> Json.toJson(
@@ -95,7 +92,40 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
         )
       ))
     }
+  }
 
+
+  def processFormDataJson: Action[JsValue] = Action(parse.json) {
+    request: Request[JsValue] => {
+      val input = (request.body \ "data").as[String]
+      println(input)
+      //gameController.execute(input)
+      Ok(Json.obj(
+        "players" -> Json.toJson(
+          for {
+            p <- gameController.getGameBoard.getPlayer
+          } yield Json.toJson(p)
+        ),
+        "statement" -> statementStatus,
+        "playersTurn" -> gameController.getPlayersTurn,
+        "diceNumber" -> gameController.getDicedNumber,
+        "gameState" -> gameController.getGameState.state.toString,
+        "possibleCells" -> gameController.getGameBoard.getPossibleCells,
+        "cells" -> Json.toJson(
+          for {
+            c <- gameController.getGameBoard.getCellList
+          } yield {
+            Json.obj(
+              "cellNumber" -> c.cellNumber,
+              "playerNumber" -> c.playerNumber,
+              "figureNumber" -> c.figureNumber,
+              "hasWall" -> c.hasWall,
+              "coordinates" -> c.coordinates
+            )
+          }
+        )
+      ))
+    }
   }
 
 
@@ -117,7 +147,7 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
       players.foreach(player => gameController.execute("n " + player))
       gameController.execute("n start")
 
-      Ok(views.html.gameboard2(controller = gameController))
+      Ok(views.html.gameboard(controller = gameController))
     }.getOrElse(Ok("Ups da ist etwas schiefgelaufen :/"))
 
   }
@@ -127,7 +157,7 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
   }
 
   def test: Action[AnyContent] = Action {
-    Ok(views.html.gameboard2(controller = gameController))
+    Ok(views.html.gameboard(controller = gameController))
   }
 
   implicit val pointWrites: Writes[Point] = (point: Point) => {
@@ -155,8 +185,6 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
       "statement" -> Statements.value(StatementRequest(gameController)),
       "playersTurn" -> gameController.getPlayersTurn,
       "diceNumber" -> gameController.getDicedNumber,
-      //      "selectedFigure1" -> gameController.getSelectedFigure._1,
-      //      "selectedFigure2" -> gameController.getSelectedFigure._2,
       "gameState" -> gameController.getGameState.state.toString,
       "possibleCells" -> gameController.getGameBoard.getPossibleCells,
       "cells" -> Json.toJson(
@@ -175,6 +203,5 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
       )
     ))
   }
-
 
 }
