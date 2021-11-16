@@ -1,10 +1,13 @@
 $(document).ready(function () {
     console.log("Document is ready, loading data");
     //Hier muss dann ebenfalls das Spielfeld aktualisiert werden.
-    updateController();
     updateGameboard();
+    updateStatement();
+    updateController();
 
 });
+// Global variables
+var controller = {};
 
 function updateController() {
     return $.ajax({
@@ -16,10 +19,6 @@ function updateController() {
         }
     });
 }
-
-
-// Global variables
-var controller = {};
 
 
 function getRequest(url) {
@@ -54,60 +53,6 @@ function postRequest(method, url, data) {
     });
 }
 
-
-function process(source) {
-    console.log(source)
-    let input = source.getAttribute("gameInput");
-    console.log(input)
-    postRequest("POST", "json",{"data": input}).then(() => {
-        updateGameboard();
-    })
-}
-
-function updateGameboard() {
-    updateController().then(() => {
-
-        for (let k = 0; k < 132; ++k) {
-
-            let playerNumber = controller.cells[k].playerNumber;
-            let figureNumber = controller.cells[k].figureNumber;
-            let hasWall = controller.cells[k].hasWall;
-            let possibleCell = controller.cells[k].possibleCell;
-            let gameState = controller.gameState;
-            let cellNumber = controller.cells[k].cellNumber;
-
-
-            $(document).ready(function () {
-                if (playerNumber !== 0 && !hasWall) {
-                    if (possibleCell) {
-                        $('#' + k).html('<div gameInput="'+cellNumber+'" class="figure-' + playerNumber + '-circle" onClick="process(this)"></div>')
-                    } else {
-                        $('#' + k).html('<div gameInput="'+playerNumber+' '+figureNumber+'" class="figure-' + playerNumber + '" onClick="process(this)"></div>')
-                    }
-                } else {
-                    if (hasWall) {
-                        if (possibleCell) {
-                            $('#' + k).html('<div gameInput="'+cellNumber+'" class="wall-circle" onClick="process(this)"></div>')
-                        } else {
-                            $('#' + k).html('<div gameInput="'+cellNumber+'" class="wall" onClick="process(this)"></div>')
-                        }
-                    } else {
-                        if (possibleCell) {
-                            $('#' + k).html('<div gameInput="'+cellNumber+'" class="possible-cell" onClick="process(this)"></div>')
-                        }
-                        if (gameState === "5") {
-                            $('#' + k).html('<div gameInput="'+cellNumber+'" class="possible-wall" onClick="process(this)"></div>')
-                        }
-                    }
-                }
-            });
-        }
-
-    })
-}
-
-
-
 function validateForm(assignmentForm) {
 
     let n = 0;
@@ -133,14 +78,16 @@ function validateForm(assignmentForm) {
         })
         return false;
     } else {
+
         return true;
+
     }
 }
 
 
 function win(winner) {
     Swal.fire({
-        title: 'Herzlichen Glückwunsch '+ winner + 'du hast gewonnen',
+        title: 'Herzlichen Glückwunsch ' + winner + 'du hast gewonnen',
         width: 1000,
         padding: '3em',
         backdrop: `
@@ -204,10 +151,6 @@ checkbox2.addEventListener('change', () => {
 });
 
 
-
-
-
-
 function rollDiceWithoutValues() {
     const element = document.getElementById('dice-box1');
     const numberOfDice = 4//+document.getElementById('number1').value;
@@ -218,6 +161,79 @@ function rollDiceWithoutValues() {
     }
     rollADie(options);
 }
+
+function process(source) {
+    let input = source.getAttribute("gameInput");
+    console.log(input)
+
+
+    postRequest("POST", "/json", {"data": input}).then(() => {
+            updateGameboard();
+            console.log("Habe geupdated");
+            updateStatement();
+
+    })
+}
+
+function updateStatement() {
+    updateController().then(() => {
+        $('#statement').html(controller.statement)
+
+    })
+}
+
+function updateGameboard() {
+    console.log("Update Gameboard wurde ausgeführt")
+    updateController().then(() => {
+
+        for (let k = 0; k < 132; ++k) {
+
+            let playerNumber = controller.cells[k].playerNumber;
+            let figureNumber = controller.cells[k].figureNumber;
+            let hasWall = controller.cells[k].hasWall;
+            let possibleCell = controller.cells[k].possibleCell;
+            let gameState = controller.gameState;
+            let cellNumber = controller.cells[k].cellNumber;
+
+            $('#' + k).empty();
+
+            if (playerNumber !== 0 && !hasWall) {
+                if (possibleCell) {
+                    $('#' + k).html('<div gameInput="' + cellNumber + '" class="figure-' + playerNumber + '-circle" onClick="process(this)"></div>')
+                } else {
+                    $('#' + k).html('<div gameInput="' + playerNumber + ' ' + figureNumber + '" class="figure-' + playerNumber + '" onClick="process(this)"></div>')
+                }
+            } else {
+                if (hasWall) {
+                    if (possibleCell) {
+                        $('#' + k).html('<div gameInput="' + cellNumber + '" class="wall-circle" onClick="process(this)"></div>')
+                    } else {
+                        $('#' + k).html('<div gameInput="' + cellNumber + '" class="wall" onClick="process(this)"></div>')
+                    }
+                } else {
+                    if (possibleCell) {
+                        $('#' + k).html('<div gameInput="' + cellNumber + '" class="possible-cell" onClick="process(this)"></div>')
+                    }
+                    if (gameState === "5") {
+                        $('#' + k).html('<div gameInput="' + cellNumber + '" class="possible-wall" onClick="process(this)"></div>')
+                    }
+                }
+            }
+
+        }
+
+    })
+}
+
+
+$(document).ready(function () {
+    console.log("Document is ready, loading data");
+    //Hier muss dann ebenfalls das Spielfeld aktualisiert werden.
+    updateGameboard();
+    updateStatement();
+    updateController();
+
+});
 
 
 

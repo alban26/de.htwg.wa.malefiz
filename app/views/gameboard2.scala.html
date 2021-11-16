@@ -303,7 +303,7 @@
                     <div class="container align-items-center justify-content-center">
                         <div class="row">
                             <div class="square4Info">
-                                <div class="col"><p class="statementText">@Statements.value(StatementRequest(controller))</p></div>
+                                <div class="col"><p id="statement" class="statementText"></p></div>
                                 <div class="col">
 
 
@@ -311,7 +311,7 @@
                                         <div>
                                             @* Number of Dice to use*@
                                             @* <input id="number1" type="number" value=2>*@
-                                            <button input="some" class="button-5" onclick="rollDiceWithoutValues();
+                                            <button gameInput="some" class="button-5" onclick="rollDiceWithoutValues();
                                             process(this)">ROLL!</button>
                                         </div>
                                         <div id="dice-box1"></div>
@@ -325,7 +325,6 @@
                 </div>
             </div>
         </div>
-
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </body>

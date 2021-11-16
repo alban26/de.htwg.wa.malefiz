@@ -14,6 +14,7 @@ POST     /newGame                   controllers.MalefizController.newGamePOST
 GET      /newGame                   controllers.MalefizController.newGameGET
 
 GET      /newGame2                  controllers.MalefizController.test
+POST     /newGame2                  controllers.MalefizController.test
 
 GET      /gameRules                 controllers.MalefizController.gameRules
 
