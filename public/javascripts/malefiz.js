@@ -1,7 +1,7 @@
 $(document).ready(function () {
     updateGameboard();
     updateStatement();
-    updateController();
+    // updateController();
 });
 // Global variables
 var controller = {};
@@ -17,6 +17,20 @@ function updateController() {
     });
 }
 
+function postPlayers() {
+    var formData = {
+        "player_1": $("#player_1").val(),
+        "player_2": $("#player_2").val(),
+        "player_3": $("#player_3").val(),
+        "player_4": $("#player_4").val()
+    }
+    postRequest('POST', '/newGame', formData).then(() => {
+        location.href = "/newGame"
+    })
+}
+
+
+
 function postRequest(method, url, data) {
     return $.ajax({
         method: method,
@@ -29,6 +43,7 @@ function postRequest(method, url, data) {
             controller = response;
         },
         error: function (response) {
+            console.log("Fehler")
             console.error(response);
         }
     });
@@ -118,8 +133,6 @@ checkbox.addEventListener('change', () => {
     document.getElementById('gamerules').classList.toggle('bright')
     document.getElementById('rules-main').classList.toggle('bright')
     document.getElementById('rules-toggler').classList.toggle('bright')
-
-
 });
 
 const checkbox2 = document.getElementById('checkbox-rules')
@@ -145,15 +158,14 @@ function process(source) {
     let input = source.getAttribute("gameInput");
 
     postRequest("POST", "/json", {"data": input}).then(() => {
-            updateGameboard();
-            updateStatement();
+        updateGameboard();
+        updateStatement();
     })
 }
 
 function updateStatement() {
     updateController().then(() => {
         $('#statement').html(controller.statement)
-
     })
 }
 

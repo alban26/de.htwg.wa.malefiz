@@ -3,303 +3,242 @@
 
 @main("Malefiz") {
     <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/malefiz.css")' />
-<body>
-    <div class="parallax-image">
-        <header>
-            <h1>Malefiz</h1>
-        </header>
-    </div>
-    <section id="section">
+    <body>
+        <div class="parallax-image">
+            <header>
+                <h1>Malefiz</h1>
+            </header>
+        </div>
+        <section id="section">
 
 
-        <div class="container">
-            <div style="padding-top: 20px">
-                <input type="checkbox" class="checkbox" id="checkbox">
-                <label for="checkbox" class="label">
-                    <div class="ball"></div>
-                </label>
-            </div>
-            <div class="text-center">
-            <div class="row ">
+            <div class="container">
+                <div style="padding-top: 20px">
+                    <input type="checkbox" class="checkbox" id="checkbox">
+                    <label for="checkbox" class="label">
+                        <div class="ball"></div>
+                    </label>
+                </div>
+                <div class="text-center">
+                    <div class="row ">
 
-                <div class="col-lg-4 mb-3 align-items-stretch align-items-center ">
-                    <div class="card h-100">
+                        <div class="col-lg-4 mb-3 align-items-stretch align-items-center ">
+                            <div class="card h-100">
 
 
-                        <img src="@{routes.Assets.versioned("images/malefiz-1.png")}" class="card-img-top">
-                        <div id="card1" class="card-body d-flex flex-column">
-                            <h5 class="card-title"><a id="gamerules" href="gameRules">SPIEL <br>REGELN</a></h5>
+                                <img src="@{
+                                    routes.Assets.versioned("images/malefiz-1.png")
+                                }" class="card-img-top">
+                                <div id="card1" class="card-body d-flex flex-column">
+                                    <h5 class="card-title"><a id="gamerules" href="gameRules">SPIEL <br>REGELN</a></h5>
+                                </div>
+
+                            </div>
                         </div>
 
-                    </div>
-                </div>
+                        <div class="col-lg-4 mb-3 align-items-stretch">
 
-               <div class="col-lg-4 mb-3 align-items-stretch">
+                        </div>
 
-               </div>
-
-                <div class="col-lg-4 mb-3 align-items-stretch align-items-center ">
-                    <div id="card2" class="card h-100">
-                        <div class="card-body d-flex flex-column">
-                            <div id="form">
-                                <h2>Bitte Spieler eintragen!</h2>
-                                <div class="input">
-                                    <form method="post" action="newGame" id="assignmentForm" name="assignmentForm" onsubmit="return validateForm()">
-                                        <div class="inputBox">
-                                            <label>Spieler 1</label>
-                                            <input class="input" type="text" name="player_1" />
+                        <div class="col-lg-4 mb-3 align-items-stretch align-items-center ">
+                            <div id="card2" class="card h-100">
+                                <div class="card-body d-flex flex-column">
+                                    <div id="form">
+                                        <h2>Bitte Spieler eintragen!</h2>
+                                        <div class="input">
+                                            <div class="inputBox">
+                                                <label>Spieler 1</label>
+                                                <input id="player_1" class="input" type="text" name="player_1" />
+                                            </div>
+                                            <div class="inputBox">
+                                                <label>Spieler 2</label>
+                                                <input id="player_2" class="input" type="text" name="player_2" />
+                                            </div>
+                                            <div class="inputBox">
+                                                <label>Spieler 3</label>
+                                                <input id="player_3" class="input" type="text" name="player_3" />
+                                            </div>
+                                            <div class="inputBox">
+                                                <label>Spieler 4</label>
+                                                <input id="player_4" class="input" type="text" name="player_4" />
+                                            </div>
+                                            <div class="inputBox">
+                                                <input class="input text-center my-4" type="button" onclick="postPlayers()" value="Spiel starten!">
+                                            </div>
                                         </div>
-                                        <div class="inputBox">
-                                            <label>Spieler 2</label>
-                                            <input class="input" type="text" name="player_2" />
-                                        </div>
-                                        <div class="inputBox">
-                                            <label>Spieler 3</label>
-                                            <input class="input" type="text" name="player_3" />
-                                        </div>
-                                        <div class="inputBox">
-                                            <label>Spieler 4</label>
-                                            <input class="input" type="text" name="player_4" />
-                                        </div>
-                                        <div class="inputBox">
-                                            <input class="input text-center my-4" type="submit" value="Spiel starten!">
-                                        </div>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            </div>
-            <div class="row-2">
-                <div class="col align-items-stretch align-items-center text-center">
+                <div class="row-2">
+                    <div class="col align-items-stretch align-items-center text-center">
                         <input type="checkbox" class="checkbox-rules" id="checkbox-rules">
                         <label for="checkbox-rules" class="label-rules">
                             Spielregeln!
                             <p><i id="arrow" class="arrow down"></i></p>
                         </label>
+                    </div>
                 </div>
-            </div>
-            <div id="rules-main" class="row-9 text-center" style="height: 40vh">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6" aria-label="Slide 7"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="7" aria-label="Slide 8"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="8" aria-label="Slide 9"></button>
-                </div>
-                <div class="carousel-inner " style="height: 40vh">
-                    <div class="carousel-item active">
-                            <div >
-                                <h1>Willkommen zu Malefiz</h1>
-                                <p>Würfeln, legen, taktiken – <br>das ist das „Das Original Malefiz Spiel“</p><br>
-                                <p>Bei diesem Legespiel kommt es auf euer Würfelglück und Taktikgeschick an – und was ihr daraus macht.<br>
-                                    Es bleibt bis zum Schluss spannend, denn wer im einen Moment noch wie ein Gewinner aussah,<br>
-                                    kann im nächsten Moment schon wieder ganz hinten stehen.</p>
-                            </div>
-                    </div>
-                    <div class="carousel-item">
-
-                            <div>
-                                <h2>Kurzbeschreibung <br>„Das Original Malefiz Spiel“</h2>
-                                <p>
-                                    In dem Brettspiel für die ganze Familie geht es darum, dass jeder Spieler versucht,<br>
-                                    am schnellsten ins Ziel zu gelangen.
-                                    Auf dem Weg in das Ziel kann man den Gegner im wahrsten Sinne des Wortes Steine in den Weg legen,<br>
-                                    um diese auf ihrem Weg auszubremsen.
-                                </p>
-                            </div>
-
-                    </div>
-                    <div class="carousel-item">
-
-
-                            <div>
-                                <h2>Ziel des Spiels</h2>
-                                <p>Als Erster eine der eigenen Figuren ins Ziel bringen. Gleichzeitig versucht ihr,
-                                    es euren Mitspielern so schwer wie möglich zu machen.</p>
-                            </div>
-
-                    </div>
-                    <div class="carousel-item" >
-
-
-                            <div>
-                                <h2>Spieleranzahl, Alter und Dauer</h2>
-                                <p>
-                            <ul>
-                                <li><2 – 4 Spieler</li>
-                                <li>ab 6 Jahren</li>
-                                <li>rund 30 – 45 Minuten</li>
-
-                            </ul>
-                                </p>
-                            </div>
-
-                    </div>
-                    <div class="carousel-item">
-
-
-                            <div>
-                                <h2>Spielertyp</h2>
-                                <p>
-                            <ul>
-                                <li>Familienspiel</li>
-                                <li>Taktiker</li>
-                                <li>Brettspiel</li>
-                                <li>Würfelspiel</li>
-                                <li>Laufspiel</li>
-                            </ul>
-                                </p>
-                            </div>
-
-                    </div>
-                    <div class="carousel-item">
-
-
-                            <div>
-                                <h2>Spiel startklar machen</h2>
-                                <p>
-                                    Jeder von euch erhält 5 Spielfiguren einer Farbe, die ihr auf den farblich markierten Ausgangsfeldern absetzt. <br>
-                                    Der Spielplan kommt in eure Mitte, sodass jeder einen guten Zugang hat.<br>
-                                    Die Sperrsteine legt ihr auf die 11 roten Felder des Plans.
-                                </p>
-                            </div>
+                <div id="rules-main" class="row-9 text-center" style="height: 40vh">
+                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6" aria-label="Slide 7"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="7" aria-label="Slide 8"></button>
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="8" aria-label="Slide 9"></button>
                         </div>
-
-                    <div class="carousel-item">
-
-
-                            <h2>So wird gespielt</h2>
-                            <p>
-                                Anfangen darf der jüngste Spieler der Runde, anschließend spielt ihr der Reihe nach weiter.
-
-                                Der Spieler, der gerade an der Reihe ist, würfelt einmal. Daraufhin darf er seine Figur bewegen. <br>
-                                Sie darf in jede beliebige Richtung gezogen werden, wobei auch eigene Spielfiguren dürfen übersprungen werden dürfen. <br>
-                                Allerdings darf die eingeschlagene Richtung nicht mehr geändert werden und es darf auf jedem Feld nur eine Spielfigur stehen. <br>
-                                Fremde Figuren können geschlagen werden. Sie müssen dann zur Startposition zurück.
-                                <br><br>
-                                Blockadesteine dürfen nicht übersprungen werden. Man muss sie mit einem Wurf genau treffen.<br>
-                                Dann darf man sie neu platzieren und zukünftig ist der Weg frei. Logischerweise würde man sie einem Gegner,<br>
-                                der fast sein Ziel erreicht hat, vor die Nase setzen.
-                            </p>
-                    </div>
-
-
-                    <div class="carousel-item">
-
-
-                            <div>
-                                <h2>Spiel startklar machen</h2>
-                                <p>
-                                    Jeder von euch erhält 5 Spielfiguren einer Farbe, die ihr auf den farblich markierten Ausgangsfeldern absetzt. <br>
-                                    Der Spielplan kommt in eure Mitte, sodass jeder einen guten Zugang hat.<br>
-                                    Die Sperrsteine legt ihr auf die 11 roten Felder des Plans.
-                                </p>
-                            </div>
-
-                    </div>
-
-
-                    <div class="carousel-item">
-
-
-                            <div>
-                                <h2>Alles hat ein Ende</h2>
-                                <p>
-                                    Um das Spiel zu gewinnen, muss man mit dem letzten Stein das Zielfeld ganz genau erreichen. <br>
-                                    Sind es noch 3 Felder, dann muss man auch eine Drei würfeln, Passen oder eine andere Figur setzen.
-                                </p>
-
-                                <p class="left">
-                                    <a href="/" class="btn btn-lg btn-primary">Zurück</a>
-                                </p>
-                            </div>
-
-
-                    </div>
-
-
-
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-            </div>
-        </div>
-    </section>
-</body>
-@*    <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/malefiz.css")' />
-    <div class="parallax-image">
-        <header>
-            <h1>Malefiz</h1>
-        </header>
-    </div>
-    <div class="container-fluid">
-        <div class="text-center">
-            <div class="row align-items-center justify-content-center">
-
-                <div class="col-8 col-md-4 col-lg-3">
-                    <div class="card bg-dark">
-
-                        <img src="@{
-                            routes.Assets.versioned("images/malefiz-1.png")
-                        }" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">Spielregeln</h5>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-8 col-md-4 col-lg-3">
-                    <div class="card bg-dark">
-
-                        <div class="card-body">
-                            <div class="form">
-                                <h2>Bitte Spieler eintragen!</h2>
-                                <div class="input">
-                                    <form method="post" action="newGame">
-                                        <div class="inputBox">
-                                            <label>Spieler 1</label>
-                                            <input class="input" type="text" name="player_1" />
-                                        </div>
-                                        <div class="inputBox">
-                                            <label>Spieler 2</label>
-                                            <input class="input" type="text" name="player_2" />
-                                        </div>
-                                        <div class="inputBox">
-                                            <label>Spieler 3</label>
-                                            <input class="input" type="text" name="player_3" />
-                                        </div>
-                                        <div class="inputBox">
-                                            <label>Spieler 4</label>
-                                            <input class="input" type="text" name="player_4" />
-                                        </div>
-                                        <div class="inputBox">
-                                            <input class="input" type="submit" value="Spiel starten!">
-                                        </div>
-                                    </form>
+                        <div class="carousel-inner " style="height: 40vh">
+                            <div class="carousel-item active">
+                                <div >
+                                    <h1>Willkommen zu Malefiz</h1>
+                                    <p>Würfeln, legen, taktiken – <br>das ist das „Das Original Malefiz Spiel“</p><br>
+                                    <p>Bei diesem Legespiel kommt es auf euer Würfelglück und Taktikgeschick an – und was ihr daraus macht.<br>
+                                        Es bleibt bis zum Schluss spannend, denn wer im einen Moment noch wie ein Gewinner aussah,<br>
+                                        kann im nächsten Moment schon wieder ganz hinten stehen.</p>
                                 </div>
                             </div>
+                            <div class="carousel-item">
+
+                                <div>
+                                    <h2>Kurzbeschreibung <br>„Das Original Malefiz Spiel“</h2>
+                                    <p>
+                                        In dem Brettspiel für die ganze Familie geht es darum, dass jeder Spieler versucht,<br>
+                                        am schnellsten ins Ziel zu gelangen.
+                                        Auf dem Weg in das Ziel kann man den Gegner im wahrsten Sinne des Wortes Steine in den Weg legen,<br>
+                                        um diese auf ihrem Weg auszubremsen.
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div class="carousel-item">
+
+
+                                <div>
+                                    <h2>Ziel des Spiels</h2>
+                                    <p>Als Erster eine der eigenen Figuren ins Ziel bringen. Gleichzeitig versucht ihr,
+                                        es euren Mitspielern so schwer wie möglich zu machen.</p>
+                                </div>
+
+                            </div>
+                            <div class="carousel-item" >
+
+
+                                <div>
+                                    <h2>Spieleranzahl, Alter und Dauer</h2>
+                                    <p>
+                                <ul>
+                                    <li><2 – 4 Spieler</li>
+                                    <li>ab 6 Jahren</li>
+                                    <li>rund 30 – 45 Minuten</li>
+
+                                </ul>
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div class="carousel-item">
+
+
+                                <div>
+                                    <h2>Spielertyp</h2>
+                                    <p>
+                                <ul>
+                                    <li>Familienspiel</li>
+                                    <li>Taktiker</li>
+                                    <li>Brettspiel</li>
+                                    <li>Würfelspiel</li>
+                                    <li>Laufspiel</li>
+                                </ul>
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div class="carousel-item">
+
+
+                                <div>
+                                    <h2>Spiel startklar machen</h2>
+                                    <p>
+                                        Jeder von euch erhält 5 Spielfiguren einer Farbe, die ihr auf den farblich markierten Ausgangsfeldern absetzt. <br>
+                                        Der Spielplan kommt in eure Mitte, sodass jeder einen guten Zugang hat.<br>
+                                        Die Sperrsteine legt ihr auf die 11 roten Felder des Plans.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+
+
+                                <h2>So wird gespielt</h2>
+                                <p>
+                                    Anfangen darf der jüngste Spieler der Runde, anschließend spielt ihr der Reihe nach weiter.
+
+                                    Der Spieler, der gerade an der Reihe ist, würfelt einmal. Daraufhin darf er seine Figur bewegen. <br>
+                                    Sie darf in jede beliebige Richtung gezogen werden, wobei auch eigene Spielfiguren dürfen übersprungen werden dürfen. <br>
+                                    Allerdings darf die eingeschlagene Richtung nicht mehr geändert werden und es darf auf jedem Feld nur eine Spielfigur stehen. <br>
+                                    Fremde Figuren können geschlagen werden. Sie müssen dann zur Startposition zurück.
+                                    <br><br>
+                                    Blockadesteine dürfen nicht übersprungen werden. Man muss sie mit einem Wurf genau treffen.<br>
+                                    Dann darf man sie neu platzieren und zukünftig ist der Weg frei. Logischerweise würde man sie einem Gegner,<br>
+                                    der fast sein Ziel erreicht hat, vor die Nase setzen.
+                                </p>
+                            </div>
+
+
+                            <div class="carousel-item">
+
+
+                                <div>
+                                    <h2>Spiel startklar machen</h2>
+                                    <p>
+                                        Jeder von euch erhält 5 Spielfiguren einer Farbe, die ihr auf den farblich markierten Ausgangsfeldern absetzt. <br>
+                                        Der Spielplan kommt in eure Mitte, sodass jeder einen guten Zugang hat.<br>
+                                        Die Sperrsteine legt ihr auf die 11 roten Felder des Plans.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="carousel-item">
+
+
+                                <div>
+                                    <h2>Alles hat ein Ende</h2>
+                                    <p>
+                                        Um das Spiel zu gewinnen, muss man mit dem letzten Stein das Zielfeld ganz genau erreichen. <br>
+                                        Sind es noch 3 Felder, dann muss man auch eine Drei würfeln, Passen oder eine andere Figur setzen.
+                                    </p>
+
+                                    <p class="left">
+                                        <a href="/" class="btn btn-lg btn-primary">Zurück</a>
+                                    </p>
+                                </div>
+
+
+                            </div>
+
+
                         </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
                 </div>
-
             </div>
-        </div>
-    </div>*@
+        </section>
+    </body>
 
 }

@@ -10,7 +10,7 @@ GET     /command/:cmd               controllers.MalefizController.processCMD(cmd
 +   nocsrf
 POST    /command/:cmd               controllers.MalefizController.processCMD(cmd)
 +   nocsrf
-POST     /newGame                   controllers.MalefizController.newGamePOST
+POST     /newGame                   controllers.MalefizController.processFormJson
 GET      /newGame                   controllers.MalefizController.newGameGET
 
 GET      /gameRules                 controllers.MalefizController.gameRules

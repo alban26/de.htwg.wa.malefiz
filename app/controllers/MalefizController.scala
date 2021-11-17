@@ -1,27 +1,17 @@
 package controllers
-
-import akka.pattern.StatusReply.ErrorMessage
-
 import javax.inject._
-import play.api._
-import play.api.mvc._
 import de.htwg.se.malefiz.Malefiz
-import de.htwg.se.malefiz.Malefiz.controller
-import de.htwg.se.malefiz.aview.Tui
 import de.htwg.se.malefiz.controller.controllerComponent
 import de.htwg.se.malefiz.controller.controllerComponent.{ControllerInterface, Statements}
 import de.htwg.se.malefiz.model.gameBoardComponent.GameBoardInterface
 import de.htwg.se.malefiz.model.gameBoardComponent.gameBoardBaseImpl.Point
 import de.htwg.se.malefiz.model.playerComponent.Player
-import play.api.libs.json.{JsNumber, JsValue, Json, Writes}
-import play.api._
+import play.api.libs.json.{JsError, JsNumber, JsSuccess, JsValue, Json, Reads, Writes}
 import play.api.mvc._
 import de.htwg.se.malefiz.controller.controllerComponent.Statements
 import de.htwg.se.malefiz.controller.controllerComponent.StatementRequest
-import play.api.libs.json.JsNull.as
-import play.api.libs.json.{JsValue, Json}
 
-import scala.util.{Failure, Success}
+case class FormData(player_1: String, player_2: String, player_3: String, player_4: String)
 
 /**
  * This controller creates an `Action` to handle HTTP requests to the
@@ -40,6 +30,26 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
       gameController.getPlayer.mkString("\n") + "\n" +
       Statements.value(controllerComponent.StatementRequest(gameController))
 
+
+  implicit val formDataReads: Reads[FormData] = Json.reads[FormData]
+
+  def processFormJson: Action[AnyContent] = Action { implicit request =>
+    request.body.asJson.map { body =>
+      Json.fromJson[FormData](body) match {
+        case JsSuccess(playerData, path) =>
+          val pList = List(playerData.player_1, playerData.player_2, playerData.player_3, playerData.player_4)
+          val players = pList.filter(p => p != "")
+
+          players.foreach(player => gameController.execute("n " + player))
+          gameController.execute("n start")
+
+          Ok(views.html.gameboard(controller = gameController))
+        case e @ JsError(_) =>
+          Redirect("/")
+      }
+      Ok(Json.toJson(""))
+    }.getOrElse(Redirect("/"))
+  }
 
   /**
    * Create an Action to render an HTML page.
@@ -94,63 +104,27 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
     }
   }
 
-
-  def processFormDataJson: Action[JsValue] = Action(parse.json) {
-    request: Request[JsValue] => {
-      val input = (request.body \ "data").as[String]
-      println(input)
-      //gameController.execute(input)
-      Ok(Json.obj(
-        "players" -> Json.toJson(
-          for {
-            p <- gameController.getGameBoard.getPlayer
-          } yield Json.toJson(p)
-        ),
-        "statement" -> statementStatus,
-        "playersTurn" -> gameController.getPlayersTurn,
-        "diceNumber" -> gameController.getDicedNumber,
-        "gameState" -> gameController.getGameState.state.toString,
-        "possibleCells" -> gameController.getGameBoard.getPossibleCells,
-        "cells" -> Json.toJson(
-          for {
-            c <- gameController.getGameBoard.getCellList
-          } yield {
-            Json.obj(
-              "cellNumber" -> c.cellNumber,
-              "playerNumber" -> c.playerNumber,
-              "figureNumber" -> c.figureNumber,
-              "hasWall" -> c.hasWall,
-              "coordinates" -> c.coordinates
-            )
-          }
-        )
-      ))
-    }
-  }
-
-
   def newGameGET: Action[AnyContent] = Action {
     Ok(views.html.gameboard(controller = gameController))
   }
 
-  def newGamePOST: Action[AnyContent] = Action { request =>
-    val postVals = request.body.asFormUrlEncoded
-    postVals.map { args =>
-      val player_1 = args("player_1").head
-      val player_2 = args("player_2").head
-      val player_3 = args("player_3").head
-      val player_4 = args("player_4").head
-      val pList = List(player_1, player_2, player_3, player_4)
-
-      val players = pList.filter(p => p != "")
-
-      players.foreach(player => gameController.execute("n " + player))
-      gameController.execute("n start")
-
-      Ok(views.html.gameboard(controller = gameController))
-    }.getOrElse(Ok("Ups da ist etwas schiefgelaufen :/"))
-
-  }
+//  def newGamePOST: Action[AnyContent] = Action { request =>
+//    val postVals = request.body.asFormUrlEncoded
+//    postVals.map { args =>
+//      val player_1 = args("player_1").head
+//      val player_2 = args("player_2").head
+//      val player_3 = args("player_3").head
+//      val player_4 = args("player_4").head
+//      val pList = List(player_1, player_2, player_3, player_4)
+//
+//      val players = pList.filter(p => p != "")
+//
+//      players.foreach(player => gameController.execute("n " + player))
+//      gameController.execute("n start")
+//
+//      Ok(views.html.gameboard(controller = gameController))
+//    }.getOrElse(Ok("Ups da ist etwas schiefgelaufen :/"))
+//  }
 
   def gameRules: Action[AnyContent] = Action {
     Ok(views.html.gamerules())
@@ -173,7 +147,6 @@ class MalefizController @Inject()(val controllerComponents: ControllerComponents
       "name" -> player.name
     )
   }
-
 
   def controllerToJson: Action[AnyContent] = Action {
     Ok(Json.obj(
