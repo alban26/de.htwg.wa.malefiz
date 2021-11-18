@@ -1,82 +1,59 @@
 $(document).ready(function () {
+    // updateStatement();
+    connectWebSocket();
     updateGameboard();
     updateStatement();
-    // updateController();
 });
+
+var websocket = new WebSocket("ws://localhost:9000/websocket");
 // Global variables
 var controller = {};
 
-function updateController() {
-    return $.ajax({
-        method: "GET",
-        url: "/json",
-        dataType: "json",
-        success: function (response) {
-            controller = response;
-        }
-    });
-}
+// function updateController() {
+//     return $.ajax({
+//         method: "GET",
+//         url: "/json",
+//         dataType: "json",
+//         success: function (response) {
+//             controller = response;
+//         }
+//     });
+// }
 
-function postPlayers() {
+async function postPlayers() {
     var formData = {
         "player_1": $("#player_1").val(),
         "player_2": $("#player_2").val(),
         "player_3": $("#player_3").val(),
         "player_4": $("#player_4").val()
     }
-    postRequest('POST', '/newGame', formData).then(() => {
-        location.href = "/newGame"
-    })
+
+    websocket.send(JSON.stringify(formData))
+    location.href = "/newGame"
+
+    // postRequest('POST', '/newGame', formData).then(() => {
+    //     location.href = "/newGame"
+    // })
 }
 
 
-
-function postRequest(method, url, data) {
-    return $.ajax({
-        method: method,
-        url: url,
-        data: JSON.stringify(data),
-        dataType: "json",
-        contentType: "application/json",
-
-        success: function (response) {
-            controller = response;
-        },
-        error: function (response) {
-            console.log("Fehler")
-            console.error(response);
-        }
-    });
-}
-
-function validateForm(assignmentForm) {
-
-    let n = 0;
-
-    if (document.assignmentForm.player_1.value === "") {
-        ++n;
-    }
-    if (document.assignmentForm.player_2.value === "") {
-        ++n;
-    }
-    if (document.assignmentForm.player_3.value === "") {
-        ++n;
-    }
-    if (document.assignmentForm.player_4.value === "") {
-        ++n;
-    }
-    if (n > 2) {
-        Swal.fire({
-            color: 'green',
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Bitte mindestens 2 Spieler eintragen!'
-        })
-        return false;
-    } else {
-        return true;
-    }
-}
+// function postRequest(method, url, data) {
+//     return $.ajax({
+//         method: method,
+//         url: url,
+//         data: JSON.stringify(data),
+//         dataType: "json",
+//         contentType: "application/json",
+//
+//         success: function (response) {
+//             controller = response;
+//         },
+//         error: function (response) {
+//             console.log("Fehler")
+//             console.error(response);
+//         }
+//     });
+// }
 
 
 function win(winner) {
@@ -156,58 +133,73 @@ function rollDiceWithoutValues() {
 
 function process(source) {
     let input = source.getAttribute("gameInput");
-
-    postRequest("POST", "/json", {"data": input}).then(() => {
-        updateGameboard();
-        updateStatement();
-    })
+    websocket.send(JSON.stringify({"data": input}))
 }
 
 function updateStatement() {
-    updateController().then(() => {
-        $('#statement').html(controller.statement)
-    })
+    $('#statement').html(controller.statement)
 }
 
 function updateGameboard() {
-    updateController().then(() => {
+    for (let k = 0; k < 132; ++k) {
 
-        for (let k = 0; k < 132; ++k) {
+        let cellSelector = $('#' + k)
+        let playerNumber = controller.cells[k].playerNumber;
+        let figureNumber = controller.cells[k].figureNumber;
+        let hasWall = controller.cells[k].hasWall;
+        let possibleCell = controller.cells[k].possibleCell;
+        let gameState = controller.gameState;
+        let cellNumber = controller.cells[k].cellNumber;
 
-            let cellSelector = $('#' + k)
-            let playerNumber = controller.cells[k].playerNumber;
-            let figureNumber = controller.cells[k].figureNumber;
-            let hasWall = controller.cells[k].hasWall;
-            let possibleCell = controller.cells[k].possibleCell;
-            let gameState = controller.gameState;
-            let cellNumber = controller.cells[k].cellNumber;
+        cellSelector.empty();
 
-            cellSelector.empty();
-
-            if (playerNumber !== 0 && !hasWall) {
+        if (playerNumber !== 0 && !hasWall) {
+            if (possibleCell) {
+                cellSelector.html('<div gameInput="' + cellNumber + '" class="figure-' + playerNumber + '-circle" onClick="process(this)"></div>')
+            } else {
+                cellSelector.html('<div gameInput="' + playerNumber + ' ' + figureNumber + '" class="figure-' + playerNumber + '" onClick="process(this)"></div>')
+            }
+        } else {
+            if (hasWall) {
                 if (possibleCell) {
-                    cellSelector.html('<div gameInput="' + cellNumber + '" class="figure-' + playerNumber + '-circle" onClick="process(this)"></div>')
+                    cellSelector.html('<div gameInput="' + cellNumber + '" class="wall-circle" onClick="process(this)"></div>')
                 } else {
-                    cellSelector.html('<div gameInput="' + playerNumber + ' ' + figureNumber + '" class="figure-' + playerNumber + '" onClick="process(this)"></div>')
+                    cellSelector.html('<div gameInput="' + cellNumber + '" class="wall" onClick="process(this)"></div>')
                 }
             } else {
-                if (hasWall) {
-                    if (possibleCell) {
-                        cellSelector.html('<div gameInput="' + cellNumber + '" class="wall-circle" onClick="process(this)"></div>')
-                    } else {
-                        cellSelector.html('<div gameInput="' + cellNumber + '" class="wall" onClick="process(this)"></div>')
-                    }
-                } else {
-                    if (possibleCell) {
-                        cellSelector.html('<div gameInput="' + cellNumber + '" class="possible-cell" onClick="process(this)"></div>')
-                    }
-                    if (gameState === "5") {
-                        cellSelector.html('<div gameInput="' + cellNumber + '" class="possible-wall" onClick="process(this)"></div>')
-                    }
+                if (possibleCell) {
+                    cellSelector.html('<div gameInput="' + cellNumber + '" class="possible-cell" onClick="process(this)"></div>')
+                }
+                if (gameState === "5") {
+                    cellSelector.html('<div gameInput="' + cellNumber + '" class="possible-wall" onClick="process(this)"></div>')
                 }
             }
-
         }
 
-    })
+    }
+
+}
+
+
+function connectWebSocket() {
+    websocket.onopen = (event) => {
+        console.log("Connected to Websocket");
+    };
+
+    websocket.onclose = () => {
+        console.log("Connection with Websocket Closed!");
+    };
+
+    websocket.onerror = (error) => {
+        console.log("Error in Websocket Occured: " + error);
+    };
+
+    websocket.onmessage = (e) => {
+        if (typeof e.data === "string") {
+            controller = JSON.parse(e.data);
+            console.log("got data")
+            updateGameboard();
+            updateStatement();
+        }
+    };
 }

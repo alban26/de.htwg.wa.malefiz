@@ -219,11 +219,11 @@
                                         <div>
                                             @* Number of Dice to use*@
                                             @* <input id="number1" type="number" value=2>*@
-                                            <button gameInput="some" class="button-5" onclick="rollDiceWithoutValues();
+                                            <button gameInput="200" class="button-5" onclick="rollDiceWithoutValues();
                                             process(this)">ROLL!</button>
                                         </div>
                                         <div id="dice-box1"></div>
-                                        <input id="winner" type="hidden" value=@controller.getPlayersTurn.name>
+@*                                        <input id="winner" type="hidden" value=@controller.getPlayersTurn.name>*@
                                     </div>
 
                                 </div>
@@ -233,5 +233,6 @@
                 </div>
             </div>
         </div>
+        <script>connectWebSocket(); updateStatement(); updateGameboard();</script>
     </body>
 }
