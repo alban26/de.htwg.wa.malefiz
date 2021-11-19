@@ -1,12 +1,8 @@
 $(document).ready(function () {
-    // updateStatement();
     connectWebSocket();
-    // updateGameboard();
-    // updateStatement();
 });
 
 var websocket = new WebSocket("ws://localhost:9000/websocket");
-// Global variables
 var controller = {};
 
 // function updateController() {
@@ -31,9 +27,6 @@ async function postPlayers() {
     websocket.send(JSON.stringify(formData))
     location.href = "/newGame"
 
-    // postRequest('POST', '/newGame', formData).then(() => {
-    //     location.href = "/newGame"
-    // })
 }
 
 
@@ -175,9 +168,7 @@ function updateGameboard() {
                 }
             }
         }
-
     }
-
 }
 
 function connectWebSocket() {
