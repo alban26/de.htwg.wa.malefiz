@@ -216,8 +216,10 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
           players.foreach(player => gameController.execute("n " + player))
           gameController.execute("n start")
         } else {
-          val input: String = (Json.parse(msg) \ "data").as[String]
-          gameController.execute(input)
+          if (!msg.contains("connect")) {
+            val input: String = (Json.parse(msg) \ "data").as[String]
+            gameController.execute(input)
+          }
         }
         out ! (Json.obj(
           "players" -> Json.toJson(

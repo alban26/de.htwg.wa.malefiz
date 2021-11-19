@@ -5,7 +5,7 @@
     <head>
         <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/gameboard.css")' />
     </head>
-    <body>
+    <body onload="updateStatement(); updateGameboard()">
 
         <div class="container">
             <div class="row ">
@@ -233,6 +233,6 @@
                 </div>
             </div>
         </div>
-        <script>connectWebSocket(); updateStatement(); updateGameboard();</script>
+@*        <script>connectWebSocket(); updateStatement(); updateGameboard();</script>*@
     </body>
 }

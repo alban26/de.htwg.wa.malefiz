@@ -1,8 +1,8 @@
 $(document).ready(function () {
     // updateStatement();
     connectWebSocket();
-    updateGameboard();
-    updateStatement();
+    // updateGameboard();
+    // updateStatement();
 });
 
 var websocket = new WebSocket("ws://localhost:9000/websocket");
@@ -180,10 +180,10 @@ function updateGameboard() {
 
 }
 
-
 function connectWebSocket() {
     websocket.onopen = (event) => {
         console.log("Connected to Websocket");
+        websocket.send("connect");
     };
 
     websocket.onclose = () => {
