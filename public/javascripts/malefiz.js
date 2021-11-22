@@ -1,9 +1,8 @@
 $(document).ready(function () {
     updateGameboard();
     updateStatement();
-    // updateController();
 });
-// Global variables
+// Global variable
 var controller = {};
 
 function updateController() {
@@ -28,7 +27,6 @@ function postPlayers() {
         location.href = "/newGame"
     })
 }
-
 
 
 function postRequest(method, url, data) {
