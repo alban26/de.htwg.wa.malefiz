@@ -146,6 +146,8 @@ function updateGameboard() {
 
         cellSelector.empty();
 
+        cellSelector.addClass("field align-items-center justify-content-center d-flex")
+
         if (playerNumber !== 0 && !hasWall) {
             if (possibleCell) {
                 cellSelector.html('<div gameInput="' + cellNumber + '" class="figure-' + playerNumber + '-circle" onClick="process(this)"></div>')

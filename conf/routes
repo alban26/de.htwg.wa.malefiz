@@ -18,6 +18,9 @@ GET      /gameRules                 controllers.MalefizController.gameRules
 GET      /json                      controllers.MalefizController.controllerToJson
 POST     /json                      controllers.MalefizController.processJson
 
+GET      /test                      controllers.MalefizController.test
+
+
 GET      /websocket                 controllers.MalefizController.socket
 
 # Map static resources from the /public folder to the /assets URL path

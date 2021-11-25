@@ -140,7 +140,7 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
   }
 
   def test: Action[AnyContent] = Action {
-    Ok(views.html.gameboard(controller = gameController))
+    Ok(views.html.test())
   }
 
   implicit val pointWrites: Writes[Point] = (point: Point) => {
