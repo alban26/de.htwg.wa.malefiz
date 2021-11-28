@@ -1,56 +1,17 @@
 @()
 
-
 @main("Test") {
 <!doctype html>
     <html lang="de">
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Beschreibung der Seite</title>
+            <title>Malefiz</title>
             <head>
                 <link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/gameboard.css")' />
             </head>
         </head>
         <body>
-
-            @* <div id="app">*@
-            @* <p>{{ title }} - {{ author }} - {{ age }}</p>*@
-
-
-            @* <!--v-on ist eine Directive 'on:click' steht für on-click -->*@
-            @* <!--und da drin kann man direkt javascript code ausführen in dem fall wird age erhöht - wahnsinn-->*@
-            @* <button v-on:click="age++">Increase age</button>*@
-            @* <button v-on:click="age--">Decrease age</button>*@
-            @* <div v-on:click="changeTitle">Change book title</div>*@
-
-
-            @* <!-- conditional rendering -->*@
-            @* <!-- falls true wird der inhalt in diesem div angezeigt*@
-            @* ansonsten zeigt er es gar nicht an-->*@
-
-            @* <span v-if="showBooks"><p>{{ title }} - {{ author }} - {{ age }}</p></span>*@
-            @* <span v-else>else Teil weil false</span>*@
-
-            @* <!-- schnellere Variante -->*@
-            @* <div>*@
-            @* <ul>*@
-            @* <li v-for="book in books">*@
-            @* <img :src="book.img" :alt="book.title">*@
-            @* <h2>{{ book.title }}</h2>*@
-            @* <h2>{{ book.author }}</h2>*@
-            @* </li>*@
-            @* </ul>*@
-            @* <span v-show="showBooks"><p>{{ books[0].title }} - {{ books[1].author }} - {{ age }}</p></span>*@
-            @* </div>*@
-
-
-            @* </div>*@
-
-
-                <!-- v-bind oder ':' -->
-
-
             <div id="malefiz">
                 <div class="container">
                     <div class="row ">
@@ -60,14 +21,10 @@
                         </div>
                         <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 ">
                             <infoBox></infoBox>
-
                         </div>
                     </div>
                 </div>
             </div>
-
-
-            <p>Inhalt der Seite</p>
         </body>
     </html>
 }

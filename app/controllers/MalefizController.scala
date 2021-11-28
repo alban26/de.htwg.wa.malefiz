@@ -117,24 +117,6 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
     Ok(views.html.gameboard(controller = gameController))
   }
 
-  //  def newGamePOST: Action[AnyContent] = Action { request =>
-  //    val postVals = request.body.asFormUrlEncoded
-  //    postVals.map { args =>
-  //      val player_1 = args("player_1").head
-  //      val player_2 = args("player_2").head
-  //      val player_3 = args("player_3").head
-  //      val player_4 = args("player_4").head
-  //      val pList = List(player_1, player_2, player_3, player_4)
-  //
-  //      val players = pList.filter(p => p != "")
-  //
-  //      players.foreach(player => gameController.execute("n " + player))
-  //      gameController.execute("n start")
-  //
-  //      Ok(views.html.gameboard(controller = gameController))
-  //    }.getOrElse(Ok("Ups da ist etwas schiefgelaufen :/"))
-  //  }
-
   def gameRules: Action[AnyContent] = Action {
     Ok(views.html.gamerules())
   }

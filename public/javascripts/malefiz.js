@@ -5,17 +5,6 @@ $(document).ready(function () {
 var websocket = new WebSocket("ws://localhost:9000/websocket");
 var controller = {};
 
-// function updateController() {
-//     return $.ajax({
-//         method: "GET",
-//         url: "/json",
-//         dataType: "json",
-//         success: function (response) {
-//             controller = response;
-//         }
-//     });
-// }
-
 async function postPlayers() {
     var formData = {
         "player_1": $("#player_1").val(),
@@ -28,26 +17,6 @@ async function postPlayers() {
     location.href = "/newGame"
 
 }
-
-
-// function postRequest(method, url, data) {
-//     return $.ajax({
-//         method: method,
-//         url: url,
-//         data: JSON.stringify(data),
-//         dataType: "json",
-//         contentType: "application/json",
-//
-//         success: function (response) {
-//             controller = response;
-//         },
-//         error: function (response) {
-//             console.log("Fehler")
-//             console.error(response);
-//         }
-//     });
-// }
-
 
 function win(winner) {
     Swal.fire({
