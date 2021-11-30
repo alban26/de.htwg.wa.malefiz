@@ -52,7 +52,7 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
           players.foreach(player => gameController.execute("n " + player))
           gameController.execute("n start")
 
-          Ok(views.html.gameboard(controller = gameController))
+          Ok(views.html.gameboard())
         case e@JsError(_) =>
           Redirect("/")
       }
@@ -77,7 +77,7 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
 
   def processCMD(cmd: String): Action[AnyContent] = Action {
     gameController.execute(cmd)
-    Ok(views.html.gameboard(controller = gameController))
+    Ok(views.html.gameboard())
   }
 
 
@@ -114,7 +114,7 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
   }
 
   def newGameGET: Action[AnyContent] = Action {
-    Ok(views.html.gameboard(controller = gameController))
+    Ok(views.html.gameboard())
   }
 
   def gameRules: Action[AnyContent] = Action {

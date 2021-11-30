@@ -1,7 +1,8 @@
-// Create a Vue application
+$(document).ready(function () {
+    connectWebSocket();
+});
 const app = Vue.createApp({})
 
-// Define a new global component called button-counter
 app.component('gameboard', {
     data() {
         return {
@@ -14,7 +15,7 @@ app.component('gameboard', {
         <!--17-->
         
         <div v-for="n in 8" class="empty align-items-center justify-content-center d-flex"></div>
-        <div id="131"></div>
+        <div id="131" class="field align-items-center justify-content-center d-flex"></div>
         <div v-for="n in 8" class="empty align-items-center justify-content-center d-flex"></div>
         
         <!--16-->
@@ -166,6 +167,7 @@ app.component('gameboard', {
             return new Array(stop - start).fill(start).map((n, i) => n + i);
         }
     }
+
 })
 
 
@@ -197,7 +199,7 @@ app.component('infobox', {
 app.component('playerform', {
     data() {
         return {
-            title: 'Bitte Spieler eintragen'
+            title: 'Bitte Spieler eintragen',
         }
     },
     template:`
@@ -214,13 +216,6 @@ app.component('playerform', {
                 </div>
             </div>
         </div>`
-})
-
-app.component('slider', {
-    template:`
-    
-    
-    `
 })
 
 app.mount('#malefiz')
