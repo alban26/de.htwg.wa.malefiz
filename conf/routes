@@ -9,16 +9,12 @@ GET     /about                      controllers.MalefizController.about
 GET     /command/:cmd               controllers.MalefizController.processCMD(cmd)
 +   nocsrf
 POST    /command/:cmd               controllers.MalefizController.processCMD(cmd)
-+   nocsrf
-POST     /newGame                   controllers.MalefizController.processFormJson
+#POST     /newGame                   controllers.MalefizController.processFormJson
 GET      /newGame                   controllers.MalefizController.newGameGET
-
 GET      /gameRules                 controllers.MalefizController.gameRules
-
 GET      /json                      controllers.MalefizController.controllerToJson
++ nocsrf
 POST     /json                      controllers.MalefizController.processJson
-
 GET      /websocket                 controllers.MalefizController.socket
-
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

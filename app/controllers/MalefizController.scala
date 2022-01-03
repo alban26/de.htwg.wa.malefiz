@@ -17,6 +17,7 @@ import play.api.libs.streams.ActorFlow
 import scala.swing.Reactor
 import play.api.libs.json.{JsValue, Json}
 
+import scala.collection.mutable.ListBuffer
 import scala.swing.event.Event
 
 case class FormData(player_1: String, player_2: String, player_3: String, player_4: String)
@@ -31,6 +32,7 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
   val gameController: ControllerInterface = Malefiz.controller
   val gameBoard: GameBoardInterface = gameController.getGameBoard
   val statementStatus: String = Statements.value(StatementRequest(gameController))
+  var playerList = new ListBuffer[String]()
 
 
   def malefizAsText: String =
@@ -40,25 +42,6 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
 
 
   implicit val formDataReads: Reads[FormData] = Json.reads[FormData]
-
-  def processFormJson: Action[AnyContent] = Action { implicit request =>
-    request.body.asJson.map { body =>
-      Json.fromJson[FormData](body) match {
-        case JsSuccess(playerData, path) =>
-          println("Fehler hier ero")
-          val pList = List(playerData.player_1, playerData.player_2, playerData.player_3, playerData.player_4)
-          val players = pList.filter(p => p != "")
-
-          players.foreach(player => gameController.execute("n " + player))
-          gameController.execute("n start")
-
-          Ok(views.html.gameboard(controller = gameController))
-        case e@JsError(_) =>
-          Redirect("/")
-      }
-      Ok(Json.toJson(""))
-    }.getOrElse(Redirect("/"))
-  }
 
   /**
    * Create an Action to render an HTML page.
@@ -116,24 +99,6 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
   def newGameGET: Action[AnyContent] = Action {
     Ok(views.html.gameboard(controller = gameController))
   }
-
-  //  def newGamePOST: Action[AnyContent] = Action { request =>
-  //    val postVals = request.body.asFormUrlEncoded
-  //    postVals.map { args =>
-  //      val player_1 = args("player_1").head
-  //      val player_2 = args("player_2").head
-  //      val player_3 = args("player_3").head
-  //      val player_4 = args("player_4").head
-  //      val pList = List(player_1, player_2, player_3, player_4)
-  //
-  //      val players = pList.filter(p => p != "")
-  //
-  //      players.foreach(player => gameController.execute("n " + player))
-  //      gameController.execute("n start")
-  //
-  //      Ok(views.html.gameboard(controller = gameController))
-  //    }.getOrElse(Ok("Ups da ist etwas schiefgelaufen :/"))
-  //  }
 
   def gameRules: Action[AnyContent] = Action {
     Ok(views.html.gamerules())
@@ -204,18 +169,18 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
 
     def receive: Actor.Receive = {
       case msg: String =>
-        if (msg.contains("player_1")) {
-          val player_1 = (Json.parse(msg) \ "player_1").as[String]
-          val player_2 = (Json.parse(msg) \ "player_2").as[String]
-          val player_3 = (Json.parse(msg) \ "player_3").as[String]
-          val player_4 = (Json.parse(msg) \ "player_4").as[String]
-          val pList = List(player_1, player_2, player_3, player_4)
-
+        if (msg.contains("player_name")) {
+          val player = (Json.parse(msg) \ "player_name").as[String]
+          playerList += player
+          println(playerList)
+          println(msg + "wurde hinzugefügt")
+        } else if (msg.contains("start")) {
+          val pList = playerList.toList
           val players = pList.filter(p => p != "")
-
           players.foreach(player => gameController.execute("n " + player))
           gameController.execute("n start")
-        } else {
+        }
+        else {
           if (!msg.contains("connect")) {
             val input: String = (Json.parse(msg) \ "data").as[String]
             gameController.execute(input)
@@ -227,6 +192,7 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
               p <- gameController.getGameBoard.getPlayer
             } yield Json.toJson(p)
           ),
+          "currentPlayers" -> playerList,
           "statement" -> Statements.value(StatementRequest(gameController)),
           "diceNumber" -> gameController.getDicedNumber,
           "gameState" -> gameController.getGameState.state.toString,
@@ -262,6 +228,7 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
             p <- gameController.getGameBoard.getPlayer
           } yield Json.toJson(p)
         ),
+        "currentPlayers" -> playerList,
         "diceNumber" -> gameController.getDicedNumber,
         "gameState" -> gameController.getGameState.state.toString,
         "possibleCells" -> gameController.getGameBoard.getPossibleCells,
