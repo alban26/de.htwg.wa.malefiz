@@ -4,6 +4,7 @@ organization := "com.example"
 version := "1.0-SNAPSHOT"
 
 herokuAppName in Compile := "malefiz-at-htwg"
+herokuJdkVersion in Compile := "15"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 

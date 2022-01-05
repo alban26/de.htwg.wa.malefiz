@@ -4,6 +4,7 @@
 # ~~~~
 
 # An example controller showing a sample home page
++   nocsrf
 GET     /                           controllers.MalefizController.malefiz
 GET     /about                      controllers.MalefizController.about
 GET     /command/:cmd               controllers.MalefizController.processCMD(cmd)
