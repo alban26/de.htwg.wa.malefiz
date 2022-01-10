@@ -218,7 +218,6 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
     reactions += {
       case event: GameBoardChanged => sendJsonToClient()
       case event: ChangeWall => sendJsonToClient()
-
     }
 
     def sendJsonToClient(): Unit = {
@@ -229,6 +228,7 @@ class MalefizController @Inject()(cc: ControllerComponents)(implicit system: Act
           } yield Json.toJson(p)
         ),
         "currentPlayers" -> playerList,
+        "statement" -> Statements.value(StatementRequest(gameController)),
         "diceNumber" -> gameController.getDicedNumber,
         "gameState" -> gameController.getGameState.state.toString,
         "possibleCells" -> gameController.getGameBoard.getPossibleCells,
