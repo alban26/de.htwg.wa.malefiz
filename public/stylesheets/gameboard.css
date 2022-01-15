@@ -13,11 +13,8 @@ body {
     border: 10px solid black;
     background: url("../images/malefiz-end.png") no-repeat;
     background-size: 100% 100%;
-    /*text-align: center;*/
-    width: 43vw;
-    height: 43vw;
     margin: auto;
-
+    aspect-ratio: 1/1;
 }
 
 .square4Info {
